@@ -18,6 +18,42 @@ It allows users to search for destinations, view detailed travel information, an
 ![TailwindCSS](https://img.shields.io/badge/TailwindCSS-06B6D4?style=for-the-badge&logo=tailwind-css&logoColor=white)
 ![Amadeus API](https://img.shields.io/badge/Amadeus-FF5A5F?style=for-the-badge&logo=Amadeus&logoColor=white)
 
+## Components
+
+### Layout System
+
+Voyant uses a modular layout architecture with reusable components:
+
+- **Header** – Provides navigation and accessibility features using ARIA labels and keyboard focus states.
+- **Footer** – Includes semantic role definitions (`role="contentinfo"`) and high-contrast design for visibility.
+- **Layout** – Wraps the header, main content, and footer for consistent structure across pages.
+
+### Accessibility
+
+Voyant prioritizes accessibility best practices:
+
+- Semantic HTML elements (`header`, `nav`, `main`, `footer`).
+- ARIA labels for assistive technologies.
+- Focus outlines and keyboard navigability.
+- Color contrast verified for light and dark modes.
+
+### Theming
+
+The project includes **light and dark mode support** powered by CSS variables for a seamless color theme transition.
+
+```css
+/* Example color variables */
+/* Dark theme */
+--color-bg: linear-gradient(to bottom right, #0f172a, #1e293b, #020617);
+--color-text-primary: #f1f5f9;
+--color-text-secondary: #cbd5e1;
+
+/* Light theme */
+--color-bg: linear-gradient(to bottom right, #f8fafc, #ffffff, #f1f5f9);
+--color-text-primary: #0f172a;
+--color-text-secondary: #334155;
+```
+
 ## Getting Started
 
 ### Prerequisites
