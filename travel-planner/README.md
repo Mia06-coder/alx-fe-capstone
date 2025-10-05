@@ -3,6 +3,8 @@
 Voyant is a modern travel planner application built with **Vite** and **TailwindCSS**.  
 It allows users to search for destinations, view detailed travel information, and plan trips by creating personalized itineraries.
 
+![Screenshot](./src/assets/images/screenshots/image1.png)
+
 ## Features
 
 - 🔍 Search for destinations
@@ -53,6 +55,27 @@ The project includes **light and dark mode support** powered by CSS variables fo
 --color-text-primary: #0f172a;
 --color-text-secondary: #334155;
 ```
+
+## Flights Page
+
+The **Flights Landing Page** provides users with a visually engaging interface to start planning trips:
+
+- **Search Form**  
+  Includes inputs for:
+
+  - Origin and destination
+  - Departure and return dates
+  - Passengers
+  - Cabin class selection
+  - Direct flight toggle  
+    (All inputs are accessible with proper labels and focus states)
+
+- **Tabs Navigation**  
+  Switch between **Flights**, **Hotels**, and **Attractions** sections (UI only, functionality coming soon).
+
+### ⚠️ Note
+
+Currently, the page is **not functional** — form submissions and tab content switching will be implemented in future iterations.
 
 ## Getting Started
 

@@ -17,3 +17,11 @@ All notable changes to this project will be documented in this file.
 - Header and Footer components emphasizing accessibility (ARIA labels, focus states)
 - Layout component for consistent page structure
 - Light and dark theme color variables for UI flexibility
+
+## [0.3.0] - 2025-10-05
+
+### Added
+
+- Designed Flights Landing Page with grid of flight images
+- Added accessible search form (origin, destination, dates, passengers, cabin class, direct flight toggle)
+- Implemented UI tabs for Flights, Hotels, and Attractions (non-functional)

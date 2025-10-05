@@ -16,7 +16,11 @@ export default function Header() {
       className={`
         fixed top-0 w-full z-50
         transition-shadow
-        ${scrolled ? "shadow-md border-b border-[var(--color-border)]" : ""}  
+        ${
+          scrolled
+            ? "bg-[var(--color-bg-solid)] shadow-md border-b border-[var(--color-border)]"
+            : ""
+        }  
       `}
       role="Header"
       aria-label="Main website header"

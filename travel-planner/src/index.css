@@ -10,11 +10,12 @@
   background-image: var(--color-bg);
 
   --color-bg: linear-gradient(to bottom right, #0f172a, #1e293b, #020617);
+  --color-bg-solid: #0f172a;
   --color-text-primary: #f1f5f9;
   --color-text-secondary: #cbd5e1;
   --color-text-muted: #94a3b8;
   --color-accent: #38bdf8;
-  --color-border: #38bdf8;
+  --color-border: #94a3b8;
   --color-placeholder: #cbd5e1;
 
   font-synthesis: none;
@@ -34,6 +35,7 @@ button {
     background-image: var(--color-bg);
 
     --color-bg: linear-gradient(to bottom right, #f8fafc, #ffffff, #f1f5f9);
+    --color-bg-solid: #f8fafc;
     --color-text-primary: #0f172a;
     --color-text-secondary: #334155;
     --color-text-muted: #64748b;
