@@ -1,6 +1,6 @@
 import type { InputProps } from "../../interfaces/Input.ts";
 
-export default function Input({ input }: { input: InputProps }) {
+export default function Input(input: InputProps) {
   return (
     <div className="flex items-center flex-1 min-w-0 p-3 bg-[var(--color-bg-solid)] border border-[var(--color-border)] rounded-lg gap-2">
       <label htmlFor={input.name} className="sr-only">

@@ -77,6 +77,25 @@ The **Flights Landing Page** provides users with a visually engaging interface t
 
 Currently, the page is **not functional** — form submissions and tab content switching will be implemented in future iterations.
 
+## Routing & Project Structure
+
+### Routing
+
+Voyant now uses **React Router DOM** for client-side navigation.
+
+Example route structure:
+
+```tsx
+<Route path="/" element={<Flights />} />
+<Route path="/flights/results" element={<FlightsResults />} />
+<Route path="/flight/booking" element={<FlightBooking />} />
+<Route path="/flight/itinerary" element={<FlightItinerary />} />
+```
+
+## Button Component
+
+A reusable Button component was added to maintain consistent styling and behavior across the app.
+
 ## Getting Started
 
 ### Prerequisites

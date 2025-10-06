@@ -44,10 +44,7 @@ export default function PassengerSelector() {
         onKeyDown={(e) => e.key === "Enter" && setIsOpen(!isOpen)}
         className="flex items-center gap-2 p-3 border border-[var(--color-border)] rounded-lg bg-[var(--color-bg-solid)] cursor-pointer"
       >
-        <FaPeopleGroup
-          size={16}
-          className="text-[var(--color-placeholder)] shrink-0"
-        />
+        <FaPeopleGroup size={16} />
         <span className="text-sm text-[var(--color-text-primary)] truncate">
           {formattedPassengers}
         </span>

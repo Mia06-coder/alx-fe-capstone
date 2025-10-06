@@ -16,7 +16,7 @@ export default function Tabs() {
             Hotels
           </a>
         </li>
-        <li className="border-b-2 border-[var(--color-border)] text-[var(--color-border)]">
+        <li className="border-b-2 border-[var(--color-border)] text-[var(--color-text-muted)]">
           <a href="/" className="flex gap-2 p-3 justify-center items-center">
             <FaMap size={16} />
             Attractions

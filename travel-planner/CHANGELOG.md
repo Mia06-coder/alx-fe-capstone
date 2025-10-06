@@ -25,3 +25,11 @@ All notable changes to this project will be documented in this file.
 - Designed Flights Landing Page with grid of flight images
 - Added accessible search form (origin, destination, dates, passengers, cabin class, direct flight toggle)
 - Implemented UI tabs for Flights, Hotels, and Attractions (non-functional)
+
+## [0.4.0] - 2025-10-06
+
+### Added
+
+- Integrated React Router DOM for app-wide navigation
+- Created reusable, accessible Button component
+- Improved project structure organization for scalability
