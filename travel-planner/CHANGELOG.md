@@ -40,3 +40,10 @@ All notable changes to this project will be documented in this file.
 
 - Created Flights Results Page displaying mock flight data
 - Introduced mock data file for layout testing and design iteration
+
+## [0.6.0] - 2025-10-07
+
+### Added
+
+- Helper functions for formatting dates, stops, and cabin class with baggage
+- FlightOffers TypeScript interface for flight data

@@ -101,7 +101,7 @@ A reusable Button component was added to maintain consistent styling and behavio
 The **Flights Results Page** displays available flight options based on user input.  
 Currently, it uses **mock data** to simulate results until the Amadeus API integration is complete.
 
-### 🧩 Features
+### Features
 
 - Responsive list/grid layout for flight results
 - Displays mock flight details such as:
@@ -114,6 +114,33 @@ Currently, it uses **mock data** to simulate results until the Amadeus API integ
 
 For now, the data is static and located in a mock data file within the project.  
 This setup allows for easy testing of the layout and styling before connecting to the live API.
+
+## Utility Functions & Data Structures
+
+Voyant now includes **helper functions** and **data interfaces** to streamline flight data handling:
+
+### Helper Functions
+
+- `formatDate(isoString: string): string`
+- `formatStops(segments: Segment[]): string`
+- `getCabinClassAndBaggage(flight: flightOffer):{cabin: string;bags: string;}: string`
+
+### Flight Data Structures
+
+- **FlightOffers interface**: Defines the structure of flight offer objects.
+
+  Example usage:
+
+  ```ts
+  const flight: FlightOffer = mockData[0];
+
+  console.log(formatDate(flight.itineraries[0].segments[
+                      flight.itineraries[0].segments.length - 1
+                    ].arrival.at
+                  ).date));
+  console.log(formatStops(flight.itineraries[0].segments));
+  console.log(getCabinClassAndBaggage(flight.cabin, flight.bags));
+  ```
 
 ## Getting Started
 
