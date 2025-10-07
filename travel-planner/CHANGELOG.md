@@ -33,3 +33,10 @@ All notable changes to this project will be documented in this file.
 - Integrated React Router DOM for app-wide navigation
 - Created reusable, accessible Button component
 - Improved project structure organization for scalability
+
+## [0.5.0] - 2025-10-06
+
+### Added
+
+- Created Flights Results Page displaying mock flight data
+- Introduced mock data file for layout testing and design iteration

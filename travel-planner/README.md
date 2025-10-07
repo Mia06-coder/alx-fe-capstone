@@ -96,6 +96,25 @@ Example route structure:
 
 A reusable Button component was added to maintain consistent styling and behavior across the app.
 
+## Flights Results Page
+
+The **Flights Results Page** displays available flight options based on user input.  
+Currently, it uses **mock data** to simulate results until the Amadeus API integration is complete.
+
+### 🧩 Features
+
+- Responsive list/grid layout for flight results
+- Displays mock flight details such as:
+  - Airline name and logo
+  - Departure and arrival times
+  - Flight duration
+  - Cabin class and price
+
+### Data
+
+For now, the data is static and located in a mock data file within the project.  
+This setup allows for easy testing of the layout and styling before connecting to the live API.
+
 ## Getting Started
 
 ### Prerequisites
