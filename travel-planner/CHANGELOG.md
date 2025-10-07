@@ -56,3 +56,11 @@ All notable changes to this project will be documented in this file.
 - Integrated FlightCard component with data fetched from mock JSON file
 - Implemented loading and error handling for Flights Results Page
 - Established structure for future API-based data fetching
+
+## [0.8.0] - 2025-10-07
+
+### Added
+
+- Conditional layout rendering based on route pathname
+- Excluded /flight/itinerary page from global layout (header & footer)
+- Prepared layout control for future standalone pages

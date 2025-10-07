@@ -180,6 +180,34 @@ useEffect(() => {
 }, []);
 ```
 
+## Layout Control
+
+Voyant now supports **conditional layout rendering** using React Router’s `useLocation()` hook.  
+Certain pages (like detailed itineraries or full-screen modals) are intentionally excluded from the global layout.
+
+### Implementation Logic
+
+- Defined an array of paths that **should not** include the default layout (header & footer).
+- The layout conditionally renders based on the current route’s pathname.
+
+Example:
+
+```tsx
+const location = useLocation();
+const noLayoutPaths = ["/flight/itinerary"];
+
+const shouldUseLayout = !noLayoutPaths.some((path) =>
+  location.pathname.startsWith(path)
+);
+```
+
+### Use Case
+
+This ensures pages such as:
+
+- `/flight/itinerary`
+- Future pages like `/auth/login` or `/checkout` can render without the global header and footer, allowing for a cleaner and more focused UI.
+
 ## Getting Started
 
 ### Prerequisites
