@@ -208,6 +208,22 @@ This ensures pages such as:
 - `/flight/itinerary`
 - Future pages like `/auth/login` or `/checkout` can render without the global header and footer, allowing for a cleaner and more focused UI.
 
+## Confirmed Flight Offers
+
+The project now includes a dedicated **Confirmed Flight Offers** data model and mock dataset used for the **Flight Details / Itinerary Page**.
+
+### Data & Interface
+
+- **`confirmedflightoffers.json`**
+
+  - Contains structured mock data representing confirmed flight bookings.
+  - Mirrors the structure expected from the Amadeus API’s confirmed flight response.
+
+- **`ConfirmedFlightOffer` Interface**
+  - Defines TypeScript typings for confirmed flight details:
+    - Flight segments (origin, destination, times)
+    - Pricing and baggage details
+
 ## Getting Started
 
 ### Prerequisites

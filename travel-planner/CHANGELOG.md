@@ -64,3 +64,10 @@ All notable changes to this project will be documented in this file.
 - Conditional layout rendering based on route pathname
 - Excluded /flight/itinerary page from global layout (header & footer)
 - Prepared layout control for future standalone pages
+
+## [0.9.0] - 2025-10-08
+
+### Added
+
+- Confirmed flight offers JSON file for itinerary and booking details
+- ConfirmedFlightOffer interface for strong typing and data consistency
