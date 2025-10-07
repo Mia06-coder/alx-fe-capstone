@@ -33,3 +33,26 @@ All notable changes to this project will be documented in this file.
 - Integrated React Router DOM for app-wide navigation
 - Created reusable, accessible Button component
 - Improved project structure organization for scalability
+
+## [0.5.0] - 2025-10-06
+
+### Added
+
+- Created Flights Results Page displaying mock flight data
+- Introduced mock data file for layout testing and design iteration
+
+## [0.6.0] - 2025-10-07
+
+### Added
+
+- Helper functions for formatting dates, stops, and cabin class with baggage
+- FlightOffers TypeScript interface for flight data
+
+## [0.7.0] - 2025-10-07
+
+### Added
+
+- Mock JSON file with sample flight offers to test Flights Results Page
+- Integrated FlightCard component with data fetched from mock JSON file
+- Implemented loading and error handling for Flights Results Page
+- Established structure for future API-based data fetching

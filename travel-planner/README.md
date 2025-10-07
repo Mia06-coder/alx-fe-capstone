@@ -96,6 +96,90 @@ Example route structure:
 
 A reusable Button component was added to maintain consistent styling and behavior across the app.
 
+## Flights Results Page
+
+The **Flights Results Page** displays available flight options based on user input.  
+Currently, it uses **mock data** to simulate results until the Amadeus API integration is complete.
+
+### Features
+
+- Responsive list/grid layout for flight results
+- Displays mock flight details such as:
+  - Airline name and logo
+  - Departure and arrival times
+  - Flight duration
+  - Cabin class and price
+
+### Data
+
+For now, the data is static and located in a mock data file within the project.  
+This setup allows for easy testing of the layout and styling before connecting to the live API.
+
+## Utility Functions & Data Structures
+
+Voyant now includes **helper functions** and **data interfaces** to streamline flight data handling:
+
+### Helper Functions
+
+- `formatDate(isoString: string): string`
+- `formatStops(segments: Segment[]): string`
+- `getCabinClassAndBaggage(flight: flightOffer):{cabin: string;bags: string;}: string`
+
+### Flight Data Structures
+
+- **FlightOffers interface**: Defines the structure of flight offer objects.
+
+  Example usage:
+
+  ```ts
+  const flight: FlightOffer = mockData[0];
+
+  console.log(formatDate(flight.itineraries[0].segments[
+                      flight.itineraries[0].segments.length - 1
+                    ].arrival.at
+                  ).date));
+  console.log(formatStops(flight.itineraries[0].segments));
+  console.log(getCabinClassAndBaggage(flight.cabin, flight.bags));
+  ```
+
+## Flights Results Integration
+
+The **Flights Results Page** now dynamically fetches data from a local mock JSON file (`/flightoffers.json`) and renders it using the **FlightCard** component.
+
+### Implementation Overview
+
+- **Mock JSON file**: Contains sample flight offers to test UI and layout before API integration.
+
+- **Data Fetching**
+
+  - Uses `fetch()` inside a `useEffect()` hook to retrieve mock flight data.
+  - Handles loading and error states gracefully.
+  - Updates component state (`flights`, `loading`, `error`) accordingly.
+
+- **Component Integration**
+  - Each flight result is displayed through a reusable **FlightCard** component.
+  - `FlightCard` presents flight details such as airline, departure/arrival, stops, duration, and price.
+
+### Example Code
+
+```tsx
+useEffect(() => {
+  const fetchFlights = async () => {
+    try {
+      const response = await fetch("/flightoffers.json");
+      if (!response.ok) throw new Error("Failed to fetch flight data");
+      const data = await response.json();
+      setFlights(data.data);
+      setLoading(false);
+    } catch (err) {
+      setError((err as Error).message);
+      setLoading(false);
+    }
+  };
+  fetchFlights();
+}, []);
+```
+
 ## Getting Started
 
 ### Prerequisites
