@@ -47,3 +47,12 @@ All notable changes to this project will be documented in this file.
 
 - Helper functions for formatting dates, stops, and cabin class with baggage
 - FlightOffers TypeScript interface for flight data
+
+## [0.7.0] - 2025-10-07
+
+### Added
+
+- Mock JSON file with sample flight offers to test Flights Results Page
+- Integrated FlightCard component with data fetched from mock JSON file
+- Implemented loading and error handling for Flights Results Page
+- Established structure for future API-based data fetching

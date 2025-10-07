@@ -142,6 +142,44 @@ Voyant now includes **helper functions** and **data interfaces** to streamline f
   console.log(getCabinClassAndBaggage(flight.cabin, flight.bags));
   ```
 
+## Flights Results Integration
+
+The **Flights Results Page** now dynamically fetches data from a local mock JSON file (`/flightoffers.json`) and renders it using the **FlightCard** component.
+
+### Implementation Overview
+
+- **Mock JSON file**: Contains sample flight offers to test UI and layout before API integration.
+
+- **Data Fetching**
+
+  - Uses `fetch()` inside a `useEffect()` hook to retrieve mock flight data.
+  - Handles loading and error states gracefully.
+  - Updates component state (`flights`, `loading`, `error`) accordingly.
+
+- **Component Integration**
+  - Each flight result is displayed through a reusable **FlightCard** component.
+  - `FlightCard` presents flight details such as airline, departure/arrival, stops, duration, and price.
+
+### Example Code
+
+```tsx
+useEffect(() => {
+  const fetchFlights = async () => {
+    try {
+      const response = await fetch("/flightoffers.json");
+      if (!response.ok) throw new Error("Failed to fetch flight data");
+      const data = await response.json();
+      setFlights(data.data);
+      setLoading(false);
+    } catch (err) {
+      setError((err as Error).message);
+      setLoading(false);
+    }
+  };
+  fetchFlights();
+}, []);
+```
+
 ## Getting Started
 
 ### Prerequisites
