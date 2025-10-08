@@ -56,3 +56,64 @@ All notable changes to this project will be documented in this file.
 - Integrated FlightCard component with data fetched from mock JSON file
 - Implemented loading and error handling for Flights Results Page
 - Established structure for future API-based data fetching
+
+## [0.8.0] - 2025-10-07
+
+### Added
+
+- Conditional layout rendering based on route pathname
+- Excluded /flight/itinerary page from global layout (header & footer)
+- Prepared layout control for future standalone pages
+
+## [0.9.0] - 2025-10-08
+
+### Added
+
+- Confirmed flight offers JSON file for itinerary and booking details
+- ConfirmedFlightOffer interface for strong typing and data consistency
+
+## [0.10.0] - 2025-10-08
+
+### Added
+
+- **ItineraryHeader component** with flight info display.
+- **confirmedflightoffers.json** mock data for confirmed flights.
+- **airportCities.ts** for mapping IATA airport codes to city names.
+- TypeScript interface for confirmed flight offers.
+
+## [0.11.0] - 2025-10-08
+
+### Added
+
+- **ItineraryCard** and **ItineraryDetails** components for detailed flight view.
+- **OverviewCard** to summarize flight details at a glance.
+- **airportNames.ts** and **airlines.ts** for airport and airline mappings.
+- Helper functions: `formatDuration`, `getAirportName`, `getAirlineName`.
+
+## [0.12.0] - 2025-10-08
+
+### Added
+
+- Linked **FlightCard** component in the results page to navigate to itinerary details.
+- Implemented **ItineraryDetails** component on the itinerary page for detailed flight info.
+
+### Improved
+
+- Enhanced navigation and data flow between results and itinerary pages.
+- Streamlined user journey from flight search → result → itinerary view.
+
+## [0.13.0] - 2025-10-08
+
+### Added
+
+- **ItineraryFareDetails** component implemented in the itinerary page.
+- Added `/flight/booking` route to `noLayoutPaths`.
+
+### Changed
+
+- Replaced “Book Now” button with a **link styled as a button** navigating to `/flight/booking`.
+
+### Improved
+
+- Enhanced navigation flow from itinerary details → booking page.
+- Simplified layout handling for dedicated booking view.

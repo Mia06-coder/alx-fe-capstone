@@ -109,6 +109,8 @@ Currently, it uses **mock data** to simulate results until the Amadeus API integ
   - Departure and arrival times
   - Flight duration
   - Cabin class and price
+- Each **FlightCard** now links to its respective **Itinerary Details Page**.
+- Enhances navigation by allowing users to click a flight result and view detailed trip information.
 
 ### Data
 
@@ -179,6 +181,84 @@ useEffect(() => {
   fetchFlights();
 }, []);
 ```
+
+## Layout Control
+
+Voyant now supports **conditional layout rendering** using React Router’s `useLocation()` hook.  
+Certain pages (like detailed itineraries or full-screen modals) are intentionally excluded from the global layout.
+
+### Implementation Logic
+
+- Defined an array of paths that **should not** include the default layout (header & footer).
+- The layout conditionally renders based on the current route’s pathname.
+
+Example:
+
+```tsx
+const location = useLocation();
+const noLayoutPaths = ["/flight/itinerary"];
+
+const shouldUseLayout = !noLayoutPaths.some((path) =>
+  location.pathname.startsWith(path)
+);
+```
+
+### Use Case
+
+This ensures pages such as:
+
+- `/flight/itinerary`
+- Future pages like `/auth/login` or `/checkout` can render without the global header and footer, allowing for a cleaner and more focused UI.
+
+## Confirmed Flight Offers
+
+The project now includes a dedicated **Confirmed Flight Offers** data model and mock dataset used for the **Flight Details / Itinerary Page**.
+
+### Data & Interface
+
+- **`confirmedflightoffers.json`**
+
+  - Contains structured mock data representing confirmed flight bookings.
+  - Mirrors the structure expected from the Amadeus API’s confirmed flight response.
+
+- **`ConfirmedFlightOffer` Interface**
+  - Defines TypeScript typings for confirmed flight details:
+    - Flight segments (origin, destination, times)
+    - Pricing and baggage details
+
+## Itinerary Page
+
+Added an interactive flight itinerary details page displaying confirmed flight offers.
+
+### Features
+
+- **ItineraryHeader Component**:
+  - Displays origin, destination, travel dates, passengers, and flight duration.
+  - Includes “Book Now” button for CTA.
+  - Includes back navigation and share icons (non-functional for now).
+- **ItineraryCard** – Shows key trip details (origin, destination, stops).
+- **ItineraryDetails** – Contains two main sections:
+  - **Overview Card** – High-level summary (airline, class, number of stops, total duration).
+  - **Flight Details** – Displays each leg of the journey (departure, arrival, duration, and airline name).
+- Added **ItineraryFareDetails** component to display price breakdown and fare rules.
+- Updated “Book Now” action: now a **link styled as a button** that redirects users to the `/flight/booking` page for a seamless transition to checkout.
+
+### Supporting Files
+
+- **airportCities.ts** – Maps IATA codes to readable city names.
+- **confirmedflightoffers.json** – Mock data for confirmed flight details.
+- **TypeScript Interfaces** – Strongly typed structure for confirmed flight offers and details.
+- **airportNames.ts** – Maps airport codes to full airport names.
+- **airlines.ts** – Provides airline names from IATA codes.
+- **Helper Functions**:
+  - `formatDuration()` – Converts flight durations into readable format (e.g., 5h 35m).
+  - `getAirportName()` – Retrieves full airport name from code.
+  - `getAirlineName()` – Retrieves airline name from code.
+
+## Booking Page
+
+- Added `/flight/booking` route to the app (excluded from Layout wrapper for a clean booking interface).
+- Booking flow begins directly from the Itinerary page.
 
 ## Getting Started
 
