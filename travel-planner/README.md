@@ -236,12 +236,22 @@ Added an interactive flight itinerary details page displaying confirmed flight o
   - Displays origin, destination, travel dates, passengers, and flight duration.
   - Includes “Book Now” button for CTA.
   - Includes back navigation and share icons (non-functional for now).
+- **ItineraryCard** – Shows key trip details (origin, destination, stops).
+- **ItineraryDetails** – Contains two main sections:
+  - **Overview Card** – High-level summary (airline, class, number of stops, total duration).
+  - **Flight Details** – Displays each leg of the journey (departure, arrival, duration, and airline name).
 
 ### Supporting Files
 
 - **airportCities.ts** – Maps IATA codes to readable city names.
 - **confirmedflightoffers.json** – Mock data for confirmed flight details.
 - **TypeScript Interfaces** – Strongly typed structure for confirmed flight offers and details.
+- **airportNames.ts** – Maps airport codes to full airport names.
+- **airlines.ts** – Provides airline names from IATA codes.
+- **Helper Functions**:
+  - `formatDuration()` – Converts flight durations into readable format (e.g., 5h 35m).
+  - `getAirportName()` – Retrieves full airport name from code.
+  - `getAirlineName()` – Retrieves airline name from code.
 
 ### Prerequisites
 

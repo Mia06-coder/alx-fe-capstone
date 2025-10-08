@@ -80,3 +80,12 @@ All notable changes to this project will be documented in this file.
 - **confirmedflightoffers.json** mock data for confirmed flights.
 - **airportCities.ts** for mapping IATA airport codes to city names.
 - TypeScript interface for confirmed flight offers.
+
+## [1.11.0] - 2025-10-08
+
+### Added
+
+- **ItineraryCard** and **ItineraryDetails** components for detailed flight view.
+- **OverviewCard** to summarize flight details at a glance.
+- **airportNames.ts** and **airlines.ts** for airport and airline mappings.
+- Helper functions: `formatDuration`, `getAirportName`, `getAirlineName`.
