@@ -109,6 +109,8 @@ Currently, it uses **mock data** to simulate results until the Amadeus API integ
   - Departure and arrival times
   - Flight duration
   - Cabin class and price
+- Each **FlightCard** now links to its respective **Itinerary Details Page**.
+- Enhances navigation by allowing users to click a flight result and view detailed trip information.
 
 ### Data
 

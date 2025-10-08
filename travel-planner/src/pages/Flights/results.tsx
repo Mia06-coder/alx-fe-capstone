@@ -4,7 +4,8 @@ import Button from "../../components/common/Button";
 import flightHero from "../../assets/images/flights/passport.jpg";
 import { useEffect, useState } from "react";
 import type { FlightOffer } from "../../interfaces/FlightOffer";
-import FlightCard from "../../components/common/FlightCard";
+import FlightCard from "../../components/flight/FlightCard";
+import { Link } from "react-router-dom";
 
 export default function FlightsResults() {
   const [flights, setFlights] = useState<FlightOffer[]>([]);
@@ -92,7 +93,13 @@ export default function FlightsResults() {
           {/* Flight Cards */}
           <div className="my-10 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
             {flights.map((flight) => (
-              <FlightCard key={flight.id} {...flight} />
+              <Link
+                to={`/flight/itinerary/${flight.id}`}
+                key={flight.id}
+                aria-label="View Flight Details"
+              >
+                <FlightCard {...flight} />
+              </Link>
             ))}
           </div>
 

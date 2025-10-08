@@ -81,7 +81,7 @@ All notable changes to this project will be documented in this file.
 - **airportCities.ts** for mapping IATA airport codes to city names.
 - TypeScript interface for confirmed flight offers.
 
-## [1.11.0] - 2025-10-08
+## [0.11.0] - 2025-10-08
 
 ### Added
 
@@ -89,3 +89,15 @@ All notable changes to this project will be documented in this file.
 - **OverviewCard** to summarize flight details at a glance.
 - **airportNames.ts** and **airlines.ts** for airport and airline mappings.
 - Helper functions: `formatDuration`, `getAirportName`, `getAirlineName`.
+
+## [0.12.0] - 2025-10-08
+
+### Added
+
+- Linked **FlightCard** component in the results page to navigate to itinerary details.
+- Implemented **ItineraryDetails** component on the itinerary page for detailed flight info.
+
+### Improved
+
+- Enhanced navigation and data flow between results and itinerary pages.
+- Streamlined user journey from flight search → result → itinerary view.

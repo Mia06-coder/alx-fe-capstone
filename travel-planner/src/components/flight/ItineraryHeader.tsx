@@ -5,34 +5,13 @@ import { FaArrowLeftLong } from "react-icons/fa6";
 import { formatDateTime } from "../../utils/formatDate";
 import type { FlightOffer } from "../../interfaces/ConfirmedFlightOffer";
 import { getCityName } from "../../utils/getCityName";
+import { getTotalDuration } from "../../utils/getTotalDuration";
 
 interface ItineraryHeaderProps {
   flight: FlightOffer;
 }
 
 export default function ItineraryHeader({ flight }: ItineraryHeaderProps) {
-  // Helper to convert duration strings like "PT8H40M"
-  function parseDuration(durationStr: string) {
-    const hours = parseInt(durationStr.match(/(\d+)H/)?.[1] || "0", 10);
-    const minutes = parseInt(durationStr.match(/(\d+)M/)?.[1] || "0", 10);
-    return hours * 60 + minutes;
-  }
-
-  // Calculate total duration (all segments)
-  const totalMinutes = flight.itineraries.reduce((total, itinerary) => {
-    return (
-      total +
-      itinerary.segments.reduce(
-        (sum, seg) => sum + parseDuration(seg.duration),
-        0
-      )
-    );
-  }, 0);
-
-  const hours = Math.floor(totalMinutes / 60);
-  const minutes = totalMinutes % 60;
-  const totalDuration = `${hours}h ${minutes}m`;
-
   const firstItinerary = flight.itineraries[0];
   const lastItinerary = flight.itineraries[flight.itineraries.length - 1];
 
@@ -60,7 +39,7 @@ export default function ItineraryHeader({ flight }: ItineraryHeaderProps) {
   const currency = flight.price.currency;
 
   return (
-    <div className="mb-6 text-white bg-gradient-to-b from-blue-500 via-blue-700 to-blue-900 p-4 rounded-3xl shadow-md">
+    <div className="mb-6 text-white bg-gradient-to-b from-blue-500 via-blue-700 to-blue-900 p-8 rounded-3xl shadow-md">
       {/* Navigation and Share Icons */}
       <div className="flex justify-between items-center">
         <Link to="/flights/results" aria-label="Back to Results">
@@ -72,9 +51,8 @@ export default function ItineraryHeader({ flight }: ItineraryHeaderProps) {
       </div>
 
       {/* Flight Route and Details */}
-
-      <div className="mt-4">
-        <div className="mt-6 flex gap-2 items-center">
+      <div className="mt-4 text-center mx-auto">
+        <div className="mt-6 flex justify-center gap-2 items-center">
           <p>
             <span className="font-bold">{fromCityName}</span> ({fromCityCode})
           </p>
@@ -89,7 +67,7 @@ export default function ItineraryHeader({ flight }: ItineraryHeaderProps) {
           {passengerCount > 1 ? "passengers" : "passenger"}
         </p>
         <p>
-          {totalDuration} •{" "}
+          {getTotalDuration(flight.itineraries)} •{" "}
           {stops === 0 ? "Non-stop" : `${stops} stop${stops > 1 ? "s" : ""}`}
         </p>
 

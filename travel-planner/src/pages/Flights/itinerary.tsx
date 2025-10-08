@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import type { FlightOffer } from "../../interfaces/ConfirmedFlightOffer";
 import ItineraryHeader from "../../components/flight/ItineraryHeader";
+import FlightItineraryDetails from "../../components/flight/ItineraryDetails";
+import { getAirlineName } from "../../utils/getAirlineName";
 
 export default function FlightItinerary() {
   const [flight, setFlight] = useState<FlightOffer[]>([]);
@@ -35,9 +37,25 @@ export default function FlightItinerary() {
     return <div className="container p-6">Error: {error}</div>;
   }
 
+  const cabin = new Set(
+    flight[0].travelerPricings.flatMap((t) =>
+      t.fareDetailsBySegment.map((seg) => seg.cabin)
+    )
+  );
+
   return (
     <div className="max-w-7xl container mx-auto p-6">
       <ItineraryHeader flight={flight[0]} />
+
+      <div className="mx-8 my-16 lg:grid lg:grid-cols-2 gap-12">
+        <FlightItineraryDetails
+          itineraries={flight[0].itineraries}
+          airlineName={flight[0].validatingAirlineCodes.map((airline) =>
+            getAirlineName(airline)
+          )}
+          cabin={[...cabin].join(", ")}
+        />
+      </div>
     </div>
   );
 }
