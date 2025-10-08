@@ -1,5 +1,4 @@
 import { FaMinus, FaShareAlt } from "react-icons/fa";
-import Button from "../common/Button";
 import { Link } from "react-router-dom";
 import { FaArrowLeftLong } from "react-icons/fa6";
 import { formatDateTime } from "../../utils/formatDate";
@@ -77,11 +76,15 @@ export default function ItineraryHeader({ flight }: ItineraryHeaderProps) {
         </p>
 
         {/* Book Now Button */}
-        <Button
-          label="Book Now"
-          className="mt-6 w-full max-w-xs block mx-auto bg-gradient-to-br from-yellow-500 via-amber-600 to-yellow-700"
-          ariaLabel={`Book flight from ${fromCityName} to ${toCityName}`}
-        />
+
+        <Link
+          to={`/flight/booking/${flight.id}`}
+          role="button"
+          aria-label={`Book flight from ${fromCityName} to ${toCityName}`}
+          className="mt-6 w-full max-w-xs px-2 py-3 block mx-auto font-semibold rounded-full transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 bg-gradient-to-br from-yellow-500 via-amber-600 to-yellow-700"
+        >
+          Book Now
+        </Link>
       </div>
     </div>
   );

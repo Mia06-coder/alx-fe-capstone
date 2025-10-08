@@ -101,3 +101,19 @@ All notable changes to this project will be documented in this file.
 
 - Enhanced navigation and data flow between results and itinerary pages.
 - Streamlined user journey from flight search → result → itinerary view.
+
+## [0.13.0] - 2025-10-08
+
+### Added
+
+- **ItineraryFareDetails** component implemented in the itinerary page.
+- Added `/flight/booking` route to `noLayoutPaths`.
+
+### Changed
+
+- Replaced “Book Now” button with a **link styled as a button** navigating to `/flight/booking`.
+
+### Improved
+
+- Enhanced navigation flow from itinerary details → booking page.
+- Simplified layout handling for dedicated booking view.

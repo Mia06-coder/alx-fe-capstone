@@ -3,6 +3,7 @@ import type { FlightOffer } from "../../interfaces/ConfirmedFlightOffer";
 import ItineraryHeader from "../../components/flight/ItineraryHeader";
 import FlightItineraryDetails from "../../components/flight/ItineraryDetails";
 import { getAirlineName } from "../../utils/getAirlineName";
+import ItineraryFareDetails from "../../components/flight/ItineraryFareDetails";
 
 export default function FlightItinerary() {
   const [flight, setFlight] = useState<FlightOffer[]>([]);
@@ -55,6 +56,8 @@ export default function FlightItinerary() {
           )}
           cabin={[...cabin].join(", ")}
         />
+
+        <ItineraryFareDetails travelerPricings={flight[0].travelerPricings} />
       </div>
     </div>
   );

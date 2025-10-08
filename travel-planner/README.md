@@ -226,8 +226,6 @@ The project now includes a dedicated **Confirmed Flight Offers** data model and 
     - Flight segments (origin, destination, times)
     - Pricing and baggage details
 
-## Getting Started
-
 ## Itinerary Page
 
 Added an interactive flight itinerary details page displaying confirmed flight offers.
@@ -242,6 +240,8 @@ Added an interactive flight itinerary details page displaying confirmed flight o
 - **ItineraryDetails** – Contains two main sections:
   - **Overview Card** – High-level summary (airline, class, number of stops, total duration).
   - **Flight Details** – Displays each leg of the journey (departure, arrival, duration, and airline name).
+- Added **ItineraryFareDetails** component to display price breakdown and fare rules.
+- Updated “Book Now” action: now a **link styled as a button** that redirects users to the `/flight/booking` page for a seamless transition to checkout.
 
 ### Supporting Files
 
@@ -254,6 +254,13 @@ Added an interactive flight itinerary details page displaying confirmed flight o
   - `formatDuration()` – Converts flight durations into readable format (e.g., 5h 35m).
   - `getAirportName()` – Retrieves full airport name from code.
   - `getAirlineName()` – Retrieves airline name from code.
+
+## Booking Page
+
+- Added `/flight/booking` route to the app (excluded from Layout wrapper for a clean booking interface).
+- Booking flow begins directly from the Itinerary page.
+
+## Getting Started
 
 ### Prerequisites
 

@@ -9,7 +9,7 @@ function App() {
   {
     /* Define paths that should not use the Layout component */
   }
-  const noLayoutPaths = ["/flight/itinerary"];
+  const noLayoutPaths = ["/flight/itinerary", "/flight/booking"];
 
   {
     /* Check if the current path matches any of the no-layout paths */
