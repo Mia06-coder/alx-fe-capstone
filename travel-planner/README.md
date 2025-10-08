@@ -226,6 +226,23 @@ The project now includes a dedicated **Confirmed Flight Offers** data model and 
 
 ## Getting Started
 
+## Itinerary Page
+
+Added an interactive flight itinerary details page displaying confirmed flight offers.
+
+### Features
+
+- **ItineraryHeader Component**:
+  - Displays origin, destination, travel dates, passengers, and flight duration.
+  - Includes “Book Now” button for CTA.
+  - Includes back navigation and share icons (non-functional for now).
+
+### Supporting Files
+
+- **airportCities.ts** – Maps IATA codes to readable city names.
+- **confirmedflightoffers.json** – Mock data for confirmed flight details.
+- **TypeScript Interfaces** – Strongly typed structure for confirmed flight offers and details.
+
 ### Prerequisites
 
 - Node.js (v18+ recommended)

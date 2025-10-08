@@ -71,3 +71,12 @@ All notable changes to this project will be documented in this file.
 
 - Confirmed flight offers JSON file for itinerary and booking details
 - ConfirmedFlightOffer interface for strong typing and data consistency
+
+## [0.10.0] - 2025-10-08
+
+### Added
+
+- **ItineraryHeader component** with flight info display.
+- **confirmedflightoffers.json** mock data for confirmed flights.
+- **airportCities.ts** for mapping IATA airport codes to city names.
+- TypeScript interface for confirmed flight offers.
