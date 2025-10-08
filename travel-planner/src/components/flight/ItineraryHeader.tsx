@@ -80,6 +80,7 @@ export default function ItineraryHeader({ flight }: ItineraryHeaderProps) {
         <Link
           to={`/flight/booking/${flight.id}`}
           role="button"
+          state={{ flight }}
           aria-label={`Book flight from ${fromCityName} to ${toCityName}`}
           className="mt-6 w-full max-w-xs px-2 py-3 block mx-auto font-semibold rounded-full transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 bg-gradient-to-br from-yellow-500 via-amber-600 to-yellow-700"
         >

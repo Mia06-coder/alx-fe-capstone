@@ -117,3 +117,12 @@ All notable changes to this project will be documented in this file.
 
 - Enhanced navigation flow from itinerary details → booking page.
 - Simplified layout handling for dedicated booking view.
+
+## [0.14.0] - 2025-10-08
+
+### Added
+
+- 👥`createTravelersFromPricing` helper to dynamically determine number and type of passengers.
+- Booking page traveler cards with initials, passenger type, name, and completion indicators.
+- Booking interface structure for managing traveler data.
+- Passed flight state from Itinerary "Book Now" link to Booking page.

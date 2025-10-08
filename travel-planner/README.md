@@ -259,6 +259,14 @@ Added an interactive flight itinerary details page displaying confirmed flight o
 
 - Added `/flight/booking` route to the app (excluded from Layout wrapper for a clean booking interface).
 - Booking flow begins directly from the Itinerary page.
+- Introduced a **dynamic traveler management system** powered by `createTravelersFromPricing` helper.
+- Displays booking cards summarizing traveler details:
+  - Avatar circle with **initials**.
+  - Passenger **type** (Adult, Child, Infant).
+  - Passenger **name** (if provided).
+  - **Checkmark (✅)** for completed details or **chevron (›)** for pending info.
+- Integrated **state transfer** from the “Book Now” link in the Itinerary page for seamless context.
+- Added a dedicated **Booking interface** to structure traveler data and handle flight-specific state.
 
 ## Getting Started
 
