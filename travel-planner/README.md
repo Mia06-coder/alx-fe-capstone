@@ -268,6 +268,23 @@ Added an interactive flight itinerary details page displaying confirmed flight o
 - Integrated **state transfer** from the “Book Now” link in the Itinerary page for seamless context.
 - Added a dedicated **Booking interface** to structure traveler data and handle flight-specific state.
 
+- Implemented **Accordion** component for organized traveler input sections:
+  - **Props**:
+    - `title: string` – Section title (e.g., “Contact Details”, “Personal Details”, “Document Details”).
+    - `isOpen: boolean` – Accordion open/close state.
+    - `onToggle: () => void` – Toggles visibility.
+    - `children: React.ReactNode` – Nested content (form fields).
+- Integrated **Accordion** sections for:
+
+  - Contact Information
+  - Personal Information
+  - Document Details
+
+- Added **PassengerModal** component:
+  - Handles traveler form inputs dynamically using **react-hook-form**.
+  - Ensures validation and state persistence per traveler section.
+  - Streamlines traveler data entry with modals for improved user experience.
+
 ## Getting Started
 
 ### Prerequisites

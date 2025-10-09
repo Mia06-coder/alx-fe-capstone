@@ -37,16 +37,20 @@ export interface FlightOrder {
       option: string;
       delay: string;
     };
-    contacts?: Contact[];
+    contacts?: Billing;
   };
 }
 
 export interface Contact {
+  phones: Phone[];
+  emailAddress: string;
+  address: Address;
+}
+
+export interface Billing extends Contact {
   addresseName: { firstName: string; lastName: string };
   companyName: string;
   purpose: string;
-  phones: Phone[];
-  emailAddress: string;
   address: Address;
 }
 
