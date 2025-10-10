@@ -150,3 +150,17 @@ All notable changes to this project will be documented in this file.
 
 - Unified design and information layout across Itinerary and Booking pages.
 - Enhanced user clarity and context during booking process.
+
+## [0.17.0] - 2025-10-07
+
+### Added
+
+- Installed **Axios** for HTTP requests.
+- Added `.env*` to `.gitignore` for secure environment variable management.
+- Created `src/api/auth.ts` for Amadeus API authentication using key and secret.
+- Created `src/api/client.ts` for reusable Axios instance with base URL and token handling.
+
+### Improved
+
+- Centralized API logic and improved maintainability for future endpoints (flights, hotels, destinations).
+- Strengthened project security by ignoring environment configuration files.

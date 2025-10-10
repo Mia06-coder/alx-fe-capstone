@@ -296,6 +296,28 @@ Added an interactive flight itinerary details page displaying confirmed flight o
   - Shows total price, fare breakdown, and baggage info.
   - Maintains visual and informational consistency between pages.
 
+## API Setup
+
+### 1. Environment Configuration
+
+- Added `.env*` to `.gitignore` to prevent sensitive data (API keys, secrets) from being committed.
+- Environment variables are used to store:
+  - `VITE_AMADEUS_API_KEY`
+  - `VITE_AMADEUS_API_SECRET`
+  - `VITE_AMADEUS_BASE_URL`
+
+### 2. API Authentication (`src/api/auth.ts`)
+
+- Handles **Amadeus API access token generation** using client credentials.
+- Uses `axios` to fetch the token via POST request.
+- Exports a function that retrieves and caches the access token for reuse.
+
+### 3. Axios Client (`src/api/client.ts`)
+
+- Created a **reusable Axios instance** with:
+  - Base URL from environment variables.
+  - Automatic `Authorization` header injection using the access token.
+
 ## Getting Started
 
 ### Prerequisites
