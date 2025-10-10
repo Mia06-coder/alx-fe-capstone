@@ -318,6 +318,42 @@ Added an interactive flight itinerary details page displaying confirmed flight o
   - Base URL from environment variables.
   - Automatic `Authorization` header injection using the access token.
 
+## Flights Module
+
+### 1. Flight Offer Interface
+
+- **File:** `src/interfaces/FlightOfferParams.ts`
+- Defines the structure for flight offer parameters passed to the Amadeus API.
+- Ensures type safety and clarity for API queries.
+
+### 2. Flight Offers API
+
+- **File:** `src/api/flightOffers.ts`
+- Uses the reusable Axios client to fetch data from: `/v2/shopping/flight-offers`
+- Accepts parameters defined in `FlightOfferParams`.
+- Handles errors gracefully and logs API responses for debugging.
+
+## State Management
+
+### Flight Context
+
+- **File:** `src/context/FlightContext.tsx`
+- Built using **React Context API** to manage:
+- `flights` — stores fetched flight data.
+- `loading` — tracks API call state.
+- `error` — holds any API or network errors.
+- `fetchFlights` — async method to request flight data.
+
+### Custom Hook
+
+- **File:** `src/hooks/useFlight.ts`
+- Provides easy access to the `FlightContext` within components.
+- Simplifies state consumption and reduces prop drilling.
+
+### Integration
+
+- Wrapped the entire app in `<FlightProvider>` to provide flight data context globally.
+
 ## Getting Started
 
 ### Prerequisites

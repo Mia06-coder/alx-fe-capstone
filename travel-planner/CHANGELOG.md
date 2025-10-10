@@ -164,3 +164,18 @@ All notable changes to this project will be documented in this file.
 
 - Centralized API logic and improved maintainability for future endpoints (flights, hotels, destinations).
 - Strengthened project security by ignoring environment configuration files.
+
+## [0.18.0] - 2025-10-07
+
+### Added
+
+- `FlightOfferParams` interface for structured API parameter typing.
+- `flightOffers.ts` API module to fetch flight offers via Amadeus endpoint.
+- `FlightContext.tsx` to manage flights, loading state, and error handling using Context API.
+- `useFlight.ts` custom hook for consuming flight context easily.
+- Wrapped app with `FlightProvider` for global flight state access.
+
+### Improved
+
+- Centralized flight data management and API handling.
+- Simplified flight fetching logic with cleaner component integration.
