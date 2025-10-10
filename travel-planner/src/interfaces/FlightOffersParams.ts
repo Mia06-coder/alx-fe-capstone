@@ -7,6 +7,6 @@ export interface FlightOfferParams {
   returnDate?: string;
   children?: number;
   infants?: number;
-  travelClass?: string;
+  travelClass?: "ECONOMY" | "PREMIUM ECONOMY" | "BUSINESS" | "FIRST";
   nonStop?: boolean;
 }

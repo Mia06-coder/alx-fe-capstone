@@ -354,6 +354,41 @@ Added an interactive flight itinerary details page displaying confirmed flight o
 
 - Wrapped the entire app in `<FlightProvider>` to provide flight data context globally.
 
+## 🧳Flights Search Form
+
+### 1. Component Extraction
+
+- **File:** `src/components/forms/FlightSearchForm.tsx`
+- Moved the search form logic from the Flights index page into its own reusable component for cleaner structure and better maintainability.
+- Handles:
+  - Origin, destination, dates, passenger count, and travel class.
+  - Submits via `fetchFlights` from `FlightContext`.
+
+### 2. Validation Logic
+
+- Added input validation to the **Passengers** field:
+  - Total passengers (`adults + children + infants`) **≤ 9**.
+  - Number of **infants ≤ adults**.
+- Prevents invalid input submissions and improves API request reliability.
+
+### 3. Form Behavior
+
+- All non-submit buttons now explicitly set `type="button"` to prevent accidental form submissions when toggled or clicked.
+
+### 4. Travel Class Typing
+
+- Updated `travelClass` field in `src/interfaces/FlightOfferParams.ts`:
+  ```ts
+  travelClass?: "ECONOMY" | "PREMIUM ECONOMY" | "BUSINESS" | "FIRST";
+  ```
+- Improves type safety and enforces valid class options when making API calls.
+
+### 5. Accessibility Enhancement
+
+- **File:** `src/hooks/useOutsideClick.ts`
+- Enhanced to handle **Escape key (`Esc`)** press in addition to outside click events.
+- Ensures modals and dropdowns close seamlessly for keyboard users.
+
 ## Getting Started
 
 ### Prerequisites

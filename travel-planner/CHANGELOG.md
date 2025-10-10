@@ -151,7 +151,7 @@ All notable changes to this project will be documented in this file.
 - Unified design and information layout across Itinerary and Booking pages.
 - Enhanced user clarity and context during booking process.
 
-## [0.17.0] - 2025-10-07
+## [0.17.0] - 2025-10-10
 
 ### Added
 
@@ -165,7 +165,7 @@ All notable changes to this project will be documented in this file.
 - Centralized API logic and improved maintainability for future endpoints (flights, hotels, destinations).
 - Strengthened project security by ignoring environment configuration files.
 
-## [0.18.0] - 2025-10-07
+## [0.18.0] - 2025-10-10
 
 ### Added
 
@@ -179,3 +179,21 @@ All notable changes to this project will be documented in this file.
 
 - Centralized flight data management and API handling.
 - Simplified flight fetching logic with cleaner component integration.
+
+## [0.19.0] - 2025-10-10
+
+### Added
+
+- Validation rules for passengers: (adults + children + infants ≤ 9, infants ≤ adults).
+- ⌨`useOutsideClick` hook now supports closing modals with the Escape key.
+- Extracted flight search form into `FlightSearchForm.tsx` component for modularity.
+
+### Changed
+
+- Updated `travelClass` type in `FlightOfferParams` to specific allowed values.
+- Set all non-submit buttons to `type="button"` to avoid unintended form submissions.
+- Form submission now triggers `fetchFlights` from `FlightContext`.
+
+### Improved
+
+- Enhanced accessibility, validation, and code structure in flight search flow.
