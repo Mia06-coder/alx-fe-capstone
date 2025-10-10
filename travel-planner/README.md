@@ -281,9 +281,20 @@ Added an interactive flight itinerary details page displaying confirmed flight o
   - Document Details
 
 - Added **PassengerModal** component:
+
   - Handles traveler form inputs dynamically using **react-hook-form**.
   - Ensures validation and state persistence per traveler section.
   - Streamlines traveler data entry with modals for improved user experience.
+
+- Added **BookingHeader** component:
+
+  - Displays flight summary (origin, destination, dates, and passengers).
+  - Mirrors similar design as the itinerary header for consistent design.
+  - Improves navigation clarity and context on the booking screen.
+
+- Integrated **FareDetails** section (same structure as in the Itinerary page):
+  - Shows total price, fare breakdown, and baggage info.
+  - Maintains visual and informational consistency between pages.
 
 ## Getting Started
 

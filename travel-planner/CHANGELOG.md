@@ -138,3 +138,15 @@ All notable changes to this project will be documented in this file.
 ### Improved
 
 - Enhanced booking page organization and accessibility.
+
+## [0.16.0] - 2025-10-10
+
+### Added
+
+- **BookingHeader** component displaying summarized flight and passenger info on the booking page.
+- Integrated **FareDetails** section into the booking page for consistency with itinerary view.
+
+### Improved
+
+- Unified design and information layout across Itinerary and Booking pages.
+- Enhanced user clarity and context during booking process.
