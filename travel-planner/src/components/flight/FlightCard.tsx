@@ -3,12 +3,16 @@ import { formatDateTime } from "../../utils/formatDate";
 import { formatStops } from "../../utils/formatStops";
 import { getCabinAndBags } from "../../utils/getCabinAndBags";
 import flightLogo from "../../assets/images/flights/flight2.jpg";
+import { getAirlineName } from "../../utils/getAirlineName";
+import { getCityName } from "../../utils/getCityName";
 
 export default function FlightCard(flight: FlightOffer) {
   return (
     <div className="p-4 border border-[var(--color-border)] rounded-2xl bg-gradient-to-br from-slate-100 via-sky-50 to-sky-200 dark:from-slate-800 dark:via-slate-700 dark:to-slate-600 shadow-md hover:shadow-lg transition-all duration-200 backdrop-blur-md">
       <p className="text-right italic text-xs text-red-400">
-        Only {flight.numberOfBookableSeats} seats left at this price!!!
+        Only {flight.numberOfBookableSeats}{" "}
+        {flight.numberOfBookableSeats === 1 ? "seat" : "seats"} left at this
+        price!!!
       </p>
 
       {/* Flight summary */}
@@ -20,7 +24,7 @@ export default function FlightCard(flight: FlightOffer) {
             className="w-7 h-7 rounded-full bg-rose-100 object-cover"
           />
           <p className="font-bold">
-            {flight.validatingAirlineCodes.join(", ")}{" "}
+            {getAirlineName(flight.validatingAirlineCodes[0])}
           </p>
         </div>
         <p>
@@ -39,7 +43,9 @@ export default function FlightCard(flight: FlightOffer) {
           {/* Origin */}
           <div className="flex flex-col items-center">
             <span className="font-bold">
-              {flight.itineraries[0].segments[0].departure.iataCode}
+              {getCityName(
+                flight.itineraries[0].segments[0].departure.iataCode
+              )}
             </span>
             <span>
               {

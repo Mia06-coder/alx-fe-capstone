@@ -2,12 +2,12 @@ import { useState, type FormEvent } from "react";
 import { useNavigate } from "react-router-dom";
 import { useFlight } from "../../hooks/useFlight";
 import type { FlightOfferParams } from "../../interfaces/FlightOffersParams";
-import Input from "./Input";
-import { FaMinus, FaPlaneArrival, FaPlaneDeparture } from "react-icons/fa";
 import { FaArrowsLeftRight } from "react-icons/fa6";
 import PassengerSelector from "./PassengerSelector";
 import DirectFlightsToggle from "./DirectFlightsToggle";
 import Button from "../common/Button";
+import FlightDateInputs from "./FlightDateInputs";
+import AirportInput from "./AirportInput";
 
 export default function FlightSearchForm() {
   const { fetchFlights } = useFlight();
@@ -23,6 +23,7 @@ export default function FlightSearchForm() {
   const [travelClass, setTravelClass] =
     useState<FlightOfferParams["travelClass"]>("ECONOMY");
   const [nonStop, setNonStop] = useState(false);
+  const [hasError, setHasError] = useState(false);
 
   {
     /* Handle form submission */
@@ -43,8 +44,8 @@ export default function FlightSearchForm() {
     };
 
     try {
-      await fetchFlights(params);
       navigate("/flights/results");
+      await fetchFlights(params);
     } catch (err) {
       console.error(`Flights search failed: ${err}`);
     }
@@ -59,16 +60,10 @@ export default function FlightSearchForm() {
       >
         {/* Flight origin and destination inputs */}
         <div className="flex items-center gap-2 w-full ">
-          <Input
-            id="origin"
+          <AirportInput
             label="ORIGIN"
-            name="origin"
-            type="text"
-            placeholder="Where from?"
-            icon={<FaPlaneDeparture size={16} />}
             value={originLocationCode}
-            onChange={(e) => setOriginLocationCode(e.target.value)}
-            required={true}
+            onSelect={(code) => setOriginLocationCode(code)}
           />
 
           <button
@@ -84,47 +79,21 @@ export default function FlightSearchForm() {
             />
           </button>
 
-          <Input
-            id="destination"
+          <AirportInput
             label="DESTINATION"
-            name="destination"
-            type="text"
-            placeholder="Where to?"
-            icon={<FaPlaneArrival size={16} />}
             value={destinationLocationCode}
-            onChange={(e) => setDestinationLocationCode(e.target.value)}
-            required={true}
+            onSelect={(code) => setDestinationLocationCode(code)}
           />
         </div>
 
         {/* Check-in and check-out date inputs */}
-        <div className="flex items-center gap-2 w-full ">
-          <Input
-            id="check-in-date"
-            label="CHECK-IN DATE"
-            name="check-in-date"
-            type="date"
-            placeholder="Check-in"
-            value={departureDate}
-            onChange={(e) => setDepartureDate(e.target.value)}
-            required={true}
-          />
-
-          <button type="button">
-            <FaMinus size={20} className="text-[var(--color-placeholder)]" />
-          </button>
-
-          <Input
-            id="check-out-date"
-            label="CHECK-OUT DATE"
-            name="check-out-date"
-            type="date"
-            placeholder="Check-out"
-            value={returnDate}
-            onChange={(e) => setReturnDate(e.target.value)}
-            required={true}
-          />
-        </div>
+        <FlightDateInputs
+          departureDate={departureDate}
+          returnDate={returnDate}
+          setDepartureDate={setDepartureDate}
+          setReturnDate={setReturnDate}
+          setHasError={setHasError}
+        />
 
         {/* Passengers inputs */}
         <PassengerSelector
@@ -151,7 +120,7 @@ export default function FlightSearchForm() {
             className="w-full bg-[var(--color-bg-solid)] text-[var(--color-text-primary)] text-sm"
           >
             <option value="ECONOMY">Economy</option>
-            <option value="PREMIUM ECONOMY">Premium Economy</option>
+            <option value="PREMIUM_ECONOMY">Premium Economy</option>
             <option value="BUSINESS">Business</option>
             <option value="FIRST">First</option>
           </select>
@@ -162,7 +131,8 @@ export default function FlightSearchForm() {
         <Button
           label="Search Flights"
           type="submit"
-          className="mt-5 mx-auto bg-gradient-to-r from-yellow-500 via-amber-600 to-yellow-700 text-[var(--color-bg-solid)] rounded-full  hover:from-yellow-600 hover:via-amber-700 hover:to-yellow-800 focus:ring-amber-400"
+          className="mt-5 mx-auto bg-gradient-to-r from-yellow-500 via-amber-600 to-yellow-700 text-white rounded-full  hover:from-yellow-600 hover:via-amber-700 hover:to-yellow-800 focus:ring-amber-400 ${hasError}?"
+          disabled={hasError}
           ariaLabel="Search Flights"
         />
       </form>

@@ -379,7 +379,7 @@ Added an interactive flight itinerary details page displaying confirmed flight o
 
 - Updated `travelClass` field in `src/interfaces/FlightOfferParams.ts`:
   ```ts
-  travelClass?: "ECONOMY" | "PREMIUM ECONOMY" | "BUSINESS" | "FIRST";
+  travelClass?: "ECONOMY" | "PREMIUM_ECONOMY" | "BUSINESS" | "FIRST";
   ```
 - Improves type safety and enforces valid class options when making API calls.
 
@@ -388,6 +388,17 @@ Added an interactive flight itinerary details page displaying confirmed flight o
 - **File:** `src/hooks/useOutsideClick.ts`
 - Enhanced to handle **Escape key (`Esc`)** press in addition to outside click events.
 - Ensures modals and dropdowns close seamlessly for keyboard users.
+
+## Flight Offer Search & Validation
+
+- Added Amadeus **IATA Code Lookup** `(src/api/airport.ts)` to automatically retrieve airport codes for origin and destination inputs.
+- Implemented **Date Validation** Logic ensuring:
+  - Departure date ≥ current date
+  - Return date ≥ departure date
+- Added Access Token Expiry Handling in `src/api/auth.ts` to refresh tokens automatically when expired.
+- Introduced **FlightCardSkeleton** component for improved loading states during flight searches.
+- Configured **Vite Backend Proxy** `(vite.config.ts)` for secure API requests to Amadeus endpoints.
+- Utilized **Context API + Custom Hook** (`useFlight`) for managing flight data, loading, and error states globally.
 
 ## Getting Started
 

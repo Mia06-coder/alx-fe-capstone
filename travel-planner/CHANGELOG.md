@@ -197,3 +197,20 @@ All notable changes to this project will be documented in this file.
 ### Improved
 
 - Enhanced accessibility, validation, and code structure in flight search flow.
+
+## [0.20.0] - 2025-10-11
+
+### Added
+
+- `src/api/airport.ts`: IATA code lookup via Amadeus API
+- `src/components/FlightCardSkeleton.tsx`: Loading UI placeholder
+- Proxy setup in` vite.config.ts` for API requests
+
+### Improved
+
+- Added token expiry check and refresh in auth.ts
+- Implemented date validation for departure and return inputs
+
+### Fixed
+
+- Minor performance improvements in API call structure

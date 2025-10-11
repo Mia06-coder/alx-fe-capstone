@@ -2,34 +2,13 @@ import { FaArrowsLeftRight } from "react-icons/fa6";
 import Tabs from "../../components/Tabs";
 import Button from "../../components/common/Button";
 import flightHero from "../../assets/images/flights/passport.jpg";
-import { useEffect, useState } from "react";
-import type { FlightOffer } from "../../interfaces/FlightOffer";
 import FlightCard from "../../components/flight/FlightCard";
 import { Link } from "react-router-dom";
+import { useFlight } from "../../hooks/useFlight";
+import FlightCardSkeleton from "../../components/flight/FlightCardSkeleton";
 
 export default function FlightsResults() {
-  const [flights, setFlights] = useState<FlightOffer[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
-
-  // Fetch flight data from a local JSON file
-  useEffect(() => {
-    const fetchFlights = async () => {
-      try {
-        const response = await fetch("/flightoffers.json");
-        if (!response.ok) {
-          throw new Error("Failed to fetch flight data");
-        }
-        const data = await response.json();
-        setFlights(data.data);
-        setLoading(false);
-      } catch (err) {
-        setError((err as Error).message);
-        setLoading(false);
-      }
-    };
-    fetchFlights();
-  }, []);
+  const { flights, loading, error } = useFlight();
 
   return (
     <div className="container mx-auto p-6">
@@ -79,8 +58,10 @@ export default function FlightsResults() {
       </div>
 
       {loading ? (
-        <div className="container mx-auto p-6 text-center">
-          <p>Loading flight results...</p>
+        <div className="my-10 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+          {Array.from({ length: 3 }).map((_, i) => (
+            <FlightCardSkeleton key={i} />
+          ))}
         </div>
       ) : error ? (
         <div className="container mx-auto p-6 text-center text-red-500">
