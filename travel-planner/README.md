@@ -259,6 +259,42 @@ Added an interactive flight itinerary details page displaying confirmed flight o
 
 - Added `/flight/booking` route to the app (excluded from Layout wrapper for a clean booking interface).
 - Booking flow begins directly from the Itinerary page.
+- Introduced a **dynamic traveler management system** powered by `createTravelersFromPricing` helper.
+- Displays booking cards summarizing traveler details:
+  - Avatar circle with **initials**.
+  - Passenger **type** (Adult, Child, Infant).
+  - Passenger **name** (if provided).
+  - **Checkmark (✅)** for completed details or **chevron (›)** for pending info.
+- Integrated **state transfer** from the “Book Now” link in the Itinerary page for seamless context.
+- Added a dedicated **Booking interface** to structure traveler data and handle flight-specific state.
+
+- Implemented **Accordion** component for organized traveler input sections:
+  - **Props**:
+    - `title: string` – Section title (e.g., “Contact Details”, “Personal Details”, “Document Details”).
+    - `isOpen: boolean` – Accordion open/close state.
+    - `onToggle: () => void` – Toggles visibility.
+    - `children: React.ReactNode` – Nested content (form fields).
+- Integrated **Accordion** sections for:
+
+  - Contact Information
+  - Personal Information
+  - Document Details
+
+- Added **PassengerModal** component:
+
+  - Handles traveler form inputs dynamically using **react-hook-form**.
+  - Ensures validation and state persistence per traveler section.
+  - Streamlines traveler data entry with modals for improved user experience.
+
+- Added **BookingHeader** component:
+
+  - Displays flight summary (origin, destination, dates, and passengers).
+  - Mirrors similar design as the itinerary header for consistent design.
+  - Improves navigation clarity and context on the booking screen.
+
+- Integrated **FareDetails** section (same structure as in the Itinerary page):
+  - Shows total price, fare breakdown, and baggage info.
+  - Maintains visual and informational consistency between pages.
 
 ## Getting Started
 

@@ -1,4 +1,4 @@
-import { FaMinus, FaShareAlt } from "react-icons/fa";
+import { FaShareAlt } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { FaArrowLeftLong } from "react-icons/fa6";
 import { formatDateTime } from "../../utils/formatDate";
@@ -6,11 +6,11 @@ import type { FlightOffer } from "../../interfaces/ConfirmedFlightOffer";
 import { getCityName } from "../../utils/getCityName";
 import { getTotalDuration } from "../../utils/getTotalDuration";
 
-interface ItineraryHeaderProps {
+interface BookingHeaderProps {
   flight: FlightOffer;
 }
 
-export default function ItineraryHeader({ flight }: ItineraryHeaderProps) {
+export default function BookingHeader({ flight }: BookingHeaderProps) {
   const firstItinerary = flight.itineraries[0];
   const lastItinerary = flight.itineraries[flight.itineraries.length - 1];
 
@@ -38,10 +38,13 @@ export default function ItineraryHeader({ flight }: ItineraryHeaderProps) {
   const currency = flight.price.currency;
 
   return (
-    <div className="mb-6 text-white bg-gradient-to-b from-blue-500 via-blue-700 to-blue-900 p-8 rounded-3xl shadow-md">
+    <div className="mb-6 text-white bg-gradient-to-b from-blue-500 via-blue-700 to-blue-900 p-8 rounded-3xl shadow-md h-max md:top-4 sticky md:flex-1/3">
       {/* Navigation and Share Icons */}
       <div className="flex justify-between items-center">
-        <Link to="/flights/results" aria-label="Back to Results">
+        <Link
+          to={`/flight/itinerary/${flight.id}`}
+          aria-label="Back to Results"
+        >
           <FaArrowLeftLong size={24} />
         </Link>
         <button type="button">
@@ -50,42 +53,37 @@ export default function ItineraryHeader({ flight }: ItineraryHeaderProps) {
       </div>
 
       {/* Flight Route and Details */}
-      <div className="mt-4 text-center mx-auto">
-        <div className="mt-6 flex justify-center gap-2 items-center">
-          <p>
-            <span className="font-bold">{fromCityName}</span> ({fromCityCode})
-          </p>
-          <FaMinus />
-          <p>
-            <span className="font-bold">{toCityName}</span> ({toCityCode})
-          </p>
-        </div>
-
-        <p>
-          {startDate.date} - {endDate.date} • {passengerCount}{" "}
-          {passengerCount > 1 ? "passengers" : "passenger"}
+      <div className="mt-15 flex flex-col space-y-3 mx-auto text-center md:text-left">
+        <p className="font-medium">
+          ORIGIN:{" "}
+          <span className="font-normal">
+            {fromCityName} ({fromCityCode})
+          </span>
         </p>
         <p>
-          {getTotalDuration(flight.itineraries)} •{" "}
-          {stops === 0 ? "Non-stop" : `${stops} stop${stops > 1 ? "s" : ""}`}
+          <span className="font-medium">DESTINATION: </span>
+          {toCityName} ({toCityCode})
         </p>
-
-        <p className="mt-3 text-2xl font-medium text-yellow-400">
+        <p className="mt-5">
+          <span className="font-medium">DATES: </span>
+          {startDate.date} - {endDate.date}
+        </p>
+        <p>
+          <span className="font-medium">Passenger(s): </span>
+          {passengerCount}
+        </p>
+        <p>
+          <span className="font-medium">Duration: </span>
+          {getTotalDuration(flight.itineraries)}
+        </p>
+        <p>
+          <span className="font-medium">Stops: </span>
+          {stops}
+        </p>
+        <p className="mt-3 text-2xl font-medium text-yellow-400 text-center">
           {currency}
           {price}
         </p>
-
-        {/* Book Now Button */}
-
-        <Link
-          to={`/flight/booking/${flight.id}`}
-          role="button"
-          state={{ flight }}
-          aria-label={`Book flight from ${fromCityName} to ${toCityName}`}
-          className="mt-6 w-full max-w-xs px-2 py-3 block mx-auto font-semibold rounded-full transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 bg-gradient-to-br from-yellow-500 via-amber-600 to-yellow-700"
-        >
-          Book Now
-        </Link>
       </div>
     </div>
   );

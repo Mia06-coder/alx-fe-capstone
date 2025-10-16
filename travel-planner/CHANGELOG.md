@@ -117,3 +117,36 @@ All notable changes to this project will be documented in this file.
 
 - Enhanced navigation flow from itinerary details → booking page.
 - Simplified layout handling for dedicated booking view.
+
+## [0.14.0] - 2025-10-08
+
+### Added
+
+- 👥`createTravelersFromPricing` helper to dynamically determine number and type of passengers.
+- Booking page traveler cards with initials, passenger type, name, and completion indicators.
+- Booking interface structure for managing traveler data.
+- Passed flight state from Itinerary "Book Now" link to Booking page.
+
+## [0.15.0] - 2025-10-10
+
+### Added
+
+- **Accordion** component with props (`title`, `isOpen`, `onToggle`, `children`) for modular traveler sections.
+- Accordion usage for **Contact**, **Personal**, and **Document Details** forms.
+- **PassengerModal** component using `react-hook-form` for structured traveler input handling.
+
+### Improved
+
+- Enhanced booking page organization and accessibility.
+
+## [0.16.0] - 2025-10-10
+
+### Added
+
+- **BookingHeader** component displaying summarized flight and passenger info on the booking page.
+- Integrated **FareDetails** section into the booking page for consistency with itinerary view.
+
+### Improved
+
+- Unified design and information layout across Itinerary and Booking pages.
+- Enhanced user clarity and context during booking process.
