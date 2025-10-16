@@ -215,7 +215,7 @@ All notable changes to this project will be documented in this file.
 
 - Minor performance improvements in API call structure
 
-## [0.21.0] -2025-10-16
+## [0.21.0] - 2025-10-16
 
 ### Added
 
@@ -232,3 +232,14 @@ All notable changes to this project will be documented in this file.
 ### Improved
 
 - Unified and type-safe API error handling across backend routes.
+
+## [0.22.0] - 2025-10-16
+
+**Added**
+
+- `src/api/flightOffers.ts`: Fetches flight offers from Amadeus `/v2/shopping/flight-offers`.
+- `src/api/airportLocations.ts`: Retrieves airports or cities from Amadeus `/v1/reference-data/locations`.
+
+**Changed**
+
+- Updated flight cards to include selected flight state.

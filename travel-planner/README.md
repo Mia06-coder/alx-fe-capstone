@@ -426,6 +426,51 @@ The project now supports dynamic API routing and robust error management for bot
 
     to ensure correct asset inclusion in build output.
 
+## Flight Offers & Airport Search APIs
+
+The app now integrates **Amadeus APIs** for flight offers and airport location lookups.
+
+### Flight Offers API
+
+**File:** `src/api/flightOffers.ts`
+Fetches available flight offers via the endpoint:
+
+```plaintext
+https://test.api.amadeus.com/v2/shopping/flight-offers
+```
+
+**Parameters:**
+
+- `originLocationCode`
+- `destinationLocationCode`
+- `departureDate`
+- `returnDate` _(optional)_
+- `adults`, `children`, `infants`
+- `nonStop` _(optional — direct flights only)_
+
+The module uses a reusable Axios instance and handles token authentication automatically.
+
+### Airport Locations API
+
+**File:** `src/api/airportLocations.ts`
+Fetches airport or city information based on a **keyword search**, using the Amadeus endpoint:
+
+```plaintext
+https://test.api.amadeus.com/v1/reference-data/locations
+```
+
+**Parameters:**
+
+- `keyword`: **_user input_**
+- `subType`: "CITY, AIRPORT"
+- `sort`: "analytics.travelers.score"
+- `view`: "LIGHT"
+
+### Flight Linking Logic
+
+- Each flight card now stores the **selected flight** in context/state.
+- Clicking a flight card navigates to the **Flight Itinerary page**, displaying confirmed flight information and details (fare, route, duration, etc.).
+
 ## Getting Started
 
 ### Prerequisites

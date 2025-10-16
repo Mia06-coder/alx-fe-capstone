@@ -1,5 +1,6 @@
+// src/components/forms/AirportInput.tsx
 import { useState, useEffect } from "react";
-import { fetchAirports } from "../../api/airports";
+import { fetchAirports } from "../../api/airportLocations";
 import Input from "./Input";
 import { FaPlaneArrival, FaPlaneDeparture } from "react-icons/fa";
 
@@ -31,9 +32,14 @@ export default function AirportInput({
   useEffect(() => {
     const delayDebounce = setTimeout(async () => {
       if (query.length < 2) return;
-      const airports = await fetchAirports(query);
-      setOptions(airports);
-      setIsOpen(true);
+      try {
+        const airports = await fetchAirports(query);
+        console.log("Aiport data:", airports);
+        setOptions(airports.data);
+        setIsOpen(true);
+      } catch (error) {
+        console.error("Error fetching airports:", error);
+      }
     }, 400);
 
     return () => clearTimeout(delayDebounce);

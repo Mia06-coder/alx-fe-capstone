@@ -1,3 +1,4 @@
+// src/pages/Flights/results.tsx
 import { FaArrowsLeftRight } from "react-icons/fa6";
 import Tabs from "../../components/Tabs";
 import Button from "../../components/common/Button";
@@ -77,6 +78,7 @@ export default function FlightsResults() {
               <Link
                 to={`/flight/itinerary/${flight.id}`}
                 key={flight.id}
+                state={{ flight }}
                 aria-label="View Flight Details"
               >
                 <FlightCard {...flight} />
