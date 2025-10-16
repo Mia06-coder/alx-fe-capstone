@@ -214,3 +214,21 @@ All notable changes to this project will be documented in this file.
 ### Fixed
 
 - Minor performance improvements in API call structure
+
+## [0.21.0] -2025-10-16
+
+### Added
+
+- `src/utils/handleApiError.ts`: Centralized API error handler.
+- `vercel.json`: Deployment setup for serverless environment.
+- Vercel Node runtime support (`@vercel/node`).
+
+### Changed
+
+- `src/api/client.ts`: Automatically switches between local and production API base URLs.
+- `src/api/token.ts`: Replaces `auth.ts` for token management.
+- `vite.config.ts`: Includes HTML assets in the build output.
+
+### Improved
+
+- Unified and type-safe API error handling across backend routes.

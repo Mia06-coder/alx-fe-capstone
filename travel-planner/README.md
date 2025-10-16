@@ -400,6 +400,32 @@ Added an interactive flight itinerary details page displaying confirmed flight o
 - Configured **Vite Backend Proxy** `(vite.config.ts)` for secure API requests to Amadeus endpoints.
 - Utilized **Context API + Custom Hook** (`useFlight`) for managing flight data, loading, and error states globally.
 
+## API Configuration & Error Handling
+
+The project now supports dynamic API routing and robust error management for both local and deployed environments.
+
+- **Dynamic API Base URL**
+  The reusable Axios instance (`src/api/client.ts`) now automatically switches between
+  `http://localhost:3000/api` (development) and `/api` (production/deployed).
+- **Centralized Error Handling**
+  Added `src/utils/handleApiError.ts` — a reusable utility for consistent and type-safe error responses across all API layers, suitable for:
+  - Vercel serverless functions
+  - Next.js or Vite backend routes
+  - Generic fetch or Axios error handling
+- **Token Management**
+  Replaced `api/auth.ts` with `api/token.ts`, maintaining the same functionality for fetching and refreshing Amadeus API tokens.
+- **Deployment Setup**
+
+  - Installed `@vercel/node` for serverless deployment.
+  - Configured `vercel.json` for route rewrites and backend API handling.
+  - Updated `vite.config.ts` with:
+
+    ```ts
+    assetsInclude: ["**/*.html"];
+    ```
+
+    to ensure correct asset inclusion in build output.
+
 ## Getting Started
 
 ### Prerequisites
