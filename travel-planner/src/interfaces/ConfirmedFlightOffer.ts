@@ -7,6 +7,10 @@ export interface ConfirmedFlightOfferResponse {
 export interface ConfirmedFlightOfferData {
   type: string;
   flightOffers: FlightOffer[];
+  bookingRequirements: {
+    emailAddressRequired: boolean;
+    mobilePhoneNumberRequired: boolean;
+  };
 }
 
 export interface FlightOffer {
@@ -86,6 +90,7 @@ export interface TravelerPrice {
   total: string;
   base: string;
   taxes: Tax[];
+  refundableTaxes: string;
 }
 
 export interface Tax {

@@ -268,3 +268,16 @@ All notable changes to this project will be documented in this file.
 
 - Rearranged flight results layout for improved clarity and navigation.
 - Added `searchParams` field to FlightContextType to retain previous query data.
+
+## [0.25.0] - 2025-10-07
+
+### Added
+
+- Integrated **flight confirmation API** to fetch verified flight offers (`/flight-confirmation`).
+- Extended `ConfirmedFlightOfferData` with `bookingRequirements` for email and mobile validation.
+- Added background image to itinerary header for improved visual context.
+
+### Improved
+
+- Itinerary page now sends selected flight offer as state to confirmation API.
+- Strengthened API modularity and response handling.

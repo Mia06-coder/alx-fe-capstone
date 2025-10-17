@@ -509,6 +509,33 @@ https://test.api.amadeus.com/v1/reference-data/locations
 
   This stores and reuses search parameters for better navigation flow and user experience.
 
+## Flight Confirmation Integration
+
+**File:** `src/api/flightConfirmation.ts`
+
+- Added API integration for **confirmed flight pricing** using the endpoint:
+  `https://test.api.amadeus.com/v2/shopping/flight-offers/pricing`
+- The request takes a selected **flight offer** from the search results as a parameter and returns verified pricing and conditions.
+- Implements error handling and reusable Axios client setup for consistency.
+
+**File:** `src/interfaces/ConfirmedFlightOffer.ts`
+
+- Extended the `ConfirmedFlightOfferData` interface with a `bookingRequirements` object:
+
+  ```ts
+  bookingRequirements: {
+    emailAddressRequired: boolean;
+    mobilePhoneNumberRequired: boolean;
+  }
+  ```
+
+  Ensures validation of traveler contact details during booking.
+
+**Itinerary Page Enhancements**
+
+- Now passes the selected flight as state to the confirmation API.
+- Added a **background image** in `ItineraryHeader.tsx` depicting a cityscape or destination, enhancing the visual appeal and thematic immersion.
+
 ## Getting Started
 
 ### Prerequisites

@@ -1,3 +1,5 @@
+// src/components/flight/itineraryHeader.tsx
+import itineraryBG from "../../assets/images/flights/flight2.jpg";
 import { FaMinus, FaShareAlt } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { FaArrowLeftLong } from "react-icons/fa6";
@@ -38,54 +40,63 @@ export default function ItineraryHeader({ flight }: ItineraryHeaderProps) {
   const currency = flight.price.currency;
 
   return (
-    <div className="mb-6 text-white bg-gradient-to-b from-blue-500 via-blue-700 to-blue-900 p-8 rounded-3xl shadow-md">
-      {/* Navigation and Share Icons */}
-      <div className="flex justify-between items-center">
-        <Link to="/flights/results" aria-label="Back to Results">
-          <FaArrowLeftLong size={24} />
-        </Link>
-        <button type="button">
-          <FaShareAlt size={24} />
-        </button>
-      </div>
+    <div
+      className="relative mb-6 text-white bg-gradient-to-b from-blue-500 via-blue-700 to-blue-900 bg-cover bg-center bg-no-repeat p-8 rounded-3xl shadow-md"
+      style={{ backgroundImage: `url(${itineraryBG})` }}
+    >
+      {/* Overlay */}
+      <div className="absolute inset-0 bg-black/50 rounded-3xl"></div>
 
-      {/* Flight Route and Details */}
-      <div className="mt-4 text-center mx-auto">
-        <div className="mt-6 flex justify-center gap-2 items-center">
-          <p>
-            <span className="font-bold">{fromCityName}</span> ({fromCityCode})
-          </p>
-          <FaMinus />
-          <p>
-            <span className="font-bold">{toCityName}</span> ({toCityCode})
-          </p>
+      {/* Content */}
+      <div className="relative z-10">
+        {/* Navigation and Share Icons */}
+        <div className="flex justify-between items-center">
+          <Link to="/flights/results" aria-label="Back to Results">
+            <FaArrowLeftLong size={24} />
+          </Link>
+          <button type="button">
+            <FaShareAlt size={24} />
+          </button>
         </div>
 
-        <p>
-          {startDate.date} - {endDate.date} • {passengerCount}{" "}
-          {passengerCount > 1 ? "passengers" : "passenger"}
-        </p>
-        <p>
-          {getTotalDuration(flight.itineraries)} •{" "}
-          {stops === 0 ? "Non-stop" : `${stops} stop${stops > 1 ? "s" : ""}`}
-        </p>
+        {/* Flight Route and Details */}
+        <div className="mt-4 text-center mx-auto">
+          <div className="mt-6 flex justify-center gap-2 items-center">
+            <p>
+              <span className="font-bold">{fromCityName}</span> ({fromCityCode})
+            </p>
+            <FaMinus />
+            <p>
+              <span className="font-bold">{toCityName}</span> ({toCityCode})
+            </p>
+          </div>
 
-        <p className="mt-3 text-2xl font-medium text-yellow-400">
-          {currency}
-          {price}
-        </p>
+          <p>
+            {startDate.date} - {endDate.date} • {passengerCount}{" "}
+            {passengerCount > 1 ? "passengers" : "passenger"}
+          </p>
+          <p>
+            {getTotalDuration(flight.itineraries)} •{" "}
+            {stops === 0 ? "Non-stop" : `${stops} stop${stops > 1 ? "s" : ""}`}
+          </p>
 
-        {/* Book Now Button */}
+          <p className="mt-3 text-2xl font-medium text-yellow-400">
+            {currency}
+            {price}
+          </p>
 
-        <Link
-          to={`/flight/booking/${flight.id}`}
-          role="button"
-          state={{ flight }}
-          aria-label={`Book flight from ${fromCityName} to ${toCityName}`}
-          className="mt-6 w-full max-w-xs px-2 py-3 block mx-auto font-semibold rounded-full transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 bg-gradient-to-br from-yellow-500 via-amber-600 to-yellow-700"
-        >
-          Book Now
-        </Link>
+          {/* Book Now Button */}
+
+          <Link
+            to={`/flight/booking/${flight.id}`}
+            role="button"
+            state={{ flight }}
+            aria-label={`Book flight from ${fromCityName} to ${toCityName}`}
+            className="mt-6 w-full max-w-xs px-2 py-3 block mx-auto font-semibold rounded-full transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 bg-gradient-to-br from-yellow-500 via-amber-600 to-yellow-700"
+          >
+            Book Now
+          </Link>
+        </div>
       </div>
     </div>
   );
