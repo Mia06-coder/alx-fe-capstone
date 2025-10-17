@@ -1,3 +1,4 @@
+// src/components/forms/FlightSearchForm.tsx
 import { useState, type FormEvent } from "react";
 import { useNavigate } from "react-router-dom";
 import { useFlight } from "../../hooks/useFlight";
@@ -9,20 +10,31 @@ import Button from "../common/Button";
 import FlightDateInputs from "./FlightDateInputs";
 import AirportInput from "./AirportInput";
 
-export default function FlightSearchForm() {
-  const { fetchFlights } = useFlight();
+export default function FlightSearchForm({
+  onSearch,
+}: {
+  onSearch?: () => void;
+}) {
+  const { fetchFlights, searchParams } = useFlight();
   const navigate = useNavigate();
 
-  const [originLocationCode, setOriginLocationCode] = useState("");
-  const [destinationLocationCode, setDestinationLocationCode] = useState("");
-  const [departureDate, setDepartureDate] = useState("");
-  const [returnDate, setReturnDate] = useState("");
-  const [adults, setAdults] = useState(1);
-  const [children, setChildren] = useState(0);
-  const [infants, setInfants] = useState(0);
-  const [travelClass, setTravelClass] =
-    useState<FlightOfferParams["travelClass"]>("ECONOMY");
-  const [nonStop, setNonStop] = useState(false);
+  const [originLocationCode, setOriginLocationCode] = useState(
+    searchParams?.originLocationCode || ""
+  );
+  const [destinationLocationCode, setDestinationLocationCode] = useState(
+    searchParams?.destinationLocationCode || ""
+  );
+  const [departureDate, setDepartureDate] = useState(
+    searchParams?.departureDate || ""
+  );
+  const [returnDate, setReturnDate] = useState(searchParams?.returnDate || "");
+  const [adults, setAdults] = useState(searchParams?.adults || 1);
+  const [children, setChildren] = useState(searchParams?.children || 0);
+  const [infants, setInfants] = useState(searchParams?.infants || 0);
+  const [travelClass, setTravelClass] = useState<
+    FlightOfferParams["travelClass"]
+  >(searchParams?.travelClass || "ECONOMY");
+  const [nonStop, setNonStop] = useState(searchParams?.nonStop || false);
   const [hasError, setHasError] = useState(false);
 
   {
@@ -45,6 +57,7 @@ export default function FlightSearchForm() {
 
     try {
       navigate("/flights/results");
+      onSearch?.(); // close overlay when loading
       await fetchFlights(params);
     } catch (err) {
       console.error(`Flights search failed: ${err}`);

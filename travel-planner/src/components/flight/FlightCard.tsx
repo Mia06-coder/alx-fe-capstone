@@ -1,10 +1,10 @@
+// src/components/flight/FlightCard.tsx
 import type { FlightOffer } from "../../interfaces/FlightOffer";
 import { formatDateTime } from "../../utils/formatDate";
 import { formatStops } from "../../utils/formatStops";
 import { getCabin } from "../../utils/getCabin";
 import flightLogo from "../../assets/images/flights/flight2.jpg";
 import { getAirlineName } from "../../utils/getAirlineName";
-import { getCityName } from "../../utils/getCityName";
 
 export default function FlightCard(flight: FlightOffer) {
   return (
@@ -38,14 +38,12 @@ export default function FlightCard(flight: FlightOffer) {
       </div>
 
       {/* Flight details */}
-      <div className="min-[480px]:flex justify-between gap-12 text-sm p-3 border-t border-[var(--color-border)]">
+      <div className="lg:flex justify-between gap-12 text-sm p-3 border-t border-[var(--color-border)]">
         <div className="flex gap-2 items-center w-full max-w-md">
           {/* Origin */}
           <div className="flex flex-col items-center">
             <span className="font-bold">
-              {getCityName(
-                flight.itineraries[0].segments[0].departure.iataCode
-              )}
+              {flight.itineraries[0].segments[0].departure.iataCode}
             </span>
             <span>
               {
@@ -94,7 +92,7 @@ export default function FlightCard(flight: FlightOffer) {
         </div>
 
         {/* Price info */}
-        <div className="flex justify-evenly min-[480px]:flex-col min-[480px]:justify-center items-center text-[var(--color-text-secondary)]">
+        <div className="flex flex-wrap justify-evenly lg:flex-col lg:justify-center items-center text-[var(--color-text-secondary)]">
           <span className="text-xl font-bold text-[var(--color-accent)]">
             {flight.price.currency}
             {flight.price.total}

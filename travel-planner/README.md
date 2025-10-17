@@ -486,6 +486,29 @@ https://test.api.amadeus.com/v1/reference-data/locations
 - Renamed utility file from `getCabinAndBags.ts` → `getCabin.ts` to reflect a more focused purpose after interface restructuring.
 - Adjusted logic and references in the `FlightCard` component to align with the new interface and helper method.
 
+## Flight Results Page Enhancements
+
+- **Rearranged layout** of the results page for clearer presentation and easier access to search modification.
+- **Implemented Modify Search** functionality:
+
+  - Displays a pre-filled search form with data from the previous query.
+  - Allows users to adjust details (origin, destination, dates, passengers, etc.) without restarting the process.
+
+## AirportInput Component
+
+- Added an **`isLoading`** state and **2-second debounce** to reduce unnecessary API calls when typing.
+- Ensures smoother performance and prevents rate-limit issues when fetching airport suggestions.
+
+## Context Update
+
+- Extended `FlightContextType` with:
+
+  ```ts
+  searchParams: FlightOfferParams | null;
+  ```
+
+  This stores and reuses search parameters for better navigation flow and user experience.
+
 ## Getting Started
 
 ### Prerequisites

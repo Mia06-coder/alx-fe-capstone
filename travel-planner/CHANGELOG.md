@@ -256,3 +256,15 @@ All notable changes to this project will be documented in this file.
 
 - Data accuracy and type safety for flight offer details.
 - Simplified code readability and maintainability across utilities and components.
+
+## [0.24.0] - 2025-10-17
+
+### Added
+
+- Modify Search functionality on the flight results page with form prefill.
+- `isLoading` state and 2s debounce in AirportInput for optimized performance.
+
+### Changed
+
+- Rearranged flight results layout for improved clarity and navigation.
+- Added `searchParams` field to FlightContextType to retain previous query data.
