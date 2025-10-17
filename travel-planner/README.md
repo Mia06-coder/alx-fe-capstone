@@ -471,6 +471,21 @@ https://test.api.amadeus.com/v1/reference-data/locations
 - Each flight card now stores the **selected flight** in context/state.
 - Clicking a flight card navigates to the **Flight Itinerary page**, displaying confirmed flight information and details (fare, route, duration, etc.).
 
+## FlightOffer Interface Update
+
+**File:** `src/interfaces/FlightOffer.ts`
+
+- The `FlightOffer` interface was updated to match the **actual Amadeus API response structure**, ensuring full type safety.
+- Newly added fields include:
+
+  - `additionalServices`: e.g., baggage, seat selection, or extras.
+  - `price`, `travelerPricings`, and nested objects that reflect the real API schema.
+
+## Utility Refactor
+
+- Renamed utility file from `getCabinAndBags.ts` → `getCabin.ts` to reflect a more focused purpose after interface restructuring.
+- Adjusted logic and references in the `FlightCard` component to align with the new interface and helper method.
+
 ## Getting Started
 
 ### Prerequisites

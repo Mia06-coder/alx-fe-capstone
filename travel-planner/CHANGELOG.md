@@ -243,3 +243,16 @@ All notable changes to this project will be documented in this file.
 **Changed**
 
 - Updated flight cards to include selected flight state.
+
+## [0.23.0] - 2025-10-17
+
+**Changed**
+
+- Updated FlightOffer.ts interface to reflect actual Amadeus sample structure.
+- Renamed and refactored getCabinAndBags.ts → getCabin.ts.
+- Updated references in FlightCard and related components.
+
+**Improved**
+
+- Data accuracy and type safety for flight offer details.
+- Simplified code readability and maintainability across utilities and components.

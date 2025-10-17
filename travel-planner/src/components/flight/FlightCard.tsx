@@ -1,7 +1,7 @@
 import type { FlightOffer } from "../../interfaces/FlightOffer";
 import { formatDateTime } from "../../utils/formatDate";
 import { formatStops } from "../../utils/formatStops";
-import { getCabinAndBags } from "../../utils/getCabinAndBags";
+import { getCabin } from "../../utils/getCabin";
 import flightLogo from "../../assets/images/flights/flight2.jpg";
 import { getAirlineName } from "../../utils/getAirlineName";
 import { getCityName } from "../../utils/getCityName";
@@ -99,10 +99,7 @@ export default function FlightCard(flight: FlightOffer) {
             {flight.price.currency}
             {flight.price.total}
           </span>
-          <span className="text-xs font-medium">
-            {getCabinAndBags(flight).cabin}
-          </span>
-          <span>{getCabinAndBags(flight).bags}</span>
+          <span className="text-xs font-medium">{getCabin(flight).cabin}</span>
         </div>
       </div>
     </div>
