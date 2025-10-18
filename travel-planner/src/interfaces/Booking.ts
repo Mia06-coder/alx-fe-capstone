@@ -37,7 +37,7 @@ export interface FlightOrder {
       option: string;
       delay: string;
     };
-    contacts?: Billing;
+    contacts?: Billing[];
   };
 }
 
@@ -48,10 +48,9 @@ export interface Contact {
 }
 
 export interface Billing extends Contact {
-  addresseName: { firstName: string; lastName: string };
+  addresseeName: { firstName: string; middleName: string; lastName: string };
   companyName: string;
-  purpose: string;
-  address: Address;
+  purpose: "STANDARD" | "INVOICE" | "STANDARD_WITHOUT_TRANSMISSION";
 }
 
 export interface Phone {

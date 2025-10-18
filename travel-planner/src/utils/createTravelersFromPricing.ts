@@ -13,8 +13,8 @@ export const createTravelersFromPricing = (
     contact: {
       phones: [
         {
-          deviceType: "",
-          countryCallingCode: "+263",
+          deviceType: "MOBILE",
+          countryCallingCode: "263",
           number: "",
         },
       ],

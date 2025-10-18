@@ -536,6 +536,121 @@ https://test.api.amadeus.com/v1/reference-data/locations
 - Now passes the selected flight as state to the confirmation API.
 - Added a **background image** in `ItineraryHeader.tsx` depicting a cityscape or destination, enhancing the visual appeal and thematic immersion.
 
+## Booking System Improvements
+
+**File:** `src/utils/createTravelersFromPricing.ts`
+
+- Added **default traveler contact structure** to simplify form initialization:
+
+  ```ts
+  phones: [
+    {
+      deviceType: "MOBILE",
+      countryCallingCode: "263",
+      number: "",
+    },
+  ];
+  ```
+
+- Ensures every traveler object contains a standardized phone schema compatible with the Amadeus booking API.
+
+**File:** `src/interfaces/Booking.ts`
+
+- Updated to more accurately reflect the booking payload and response structure for future API integration.
+
+**UI Enhancements**
+
+- Added **background image** to `src/components/flight/BookingHeader.tsx` for improved aesthetics and contextual continuity with itinerary visuals.
+- Created **`src/components/BillingModal.tsx`** to capture essential user billing information:
+
+  - Full name
+  - Contact number
+  - Billing address and postal details
+
+- Updated **PassengerModal** to include new form fields:
+
+  - `issuanceLocation`
+  - `nationality`
+  - `issuanceDate`
+
+**File:** `src/data/countries.ts`
+
+- Added a temporary country dataset for nationality and issuance dropdowns:
+
+  ```ts
+  export const countries = [
+    { code: "ZW", name: "Zimbabwe" },
+    { code: "FR", name: "France" },
+    { code: "US", name: "United States" },
+    { code: "ZA", name: "South Africa" },
+    { code: "GB", name: "United Kingdom" },
+    { code: "CN", name: "China" },
+    { code: "IN", name: "India" },
+    { code: "DE", name: "Germany" },
+    { code: "KE", name: "Kenya" },
+  ];
+  ```
+
+  Enables pre-filled select lists for demo and testing before connecting to a live data source.
+
+## Flight Booking API Integration
+
+**File:** `src/api/flight-booking.ts`
+
+- Integrated **Amadeus Flight Orders API** (`https://test.api.amadeus.com/v1/booking/flight-orders`).
+- Sends structured booking data from the form, including traveler details, contact info, and confirmed offer data.
+- Implements standardized error handling and response validation.
+
+## Booking Page Improvements
+
+**File:** `src/pages/booking.tsx`
+
+- Added **loading** and **error** states for real-time feedback during booking submission.
+- On successful booking:
+
+  - Displays a **SuccessModal** summarizing key details:
+
+    - Traveler names
+    - Origin and destination
+    - Total price
+    - Ticketing delay
+
+- Improved UX through clear visual states and responsive feedback.
+
+## New Interfaces
+
+**File:** `src/interfaces/FlightOrderResponse.ts`
+
+- Defines a type-safe structure for the flight order response received from the Amadeus booking endpoint.
+- Ensures seamless mapping between API response and success modal display.
+
+## Destination and City Data Integration
+
+**New Interfaces**
+
+- **`src/interfaces/CityLocation.ts`**
+  Defines the structure for city location data fetched from Amadeus.
+
+- **`src/interfaces/CityActivities.ts`**
+  Structures data for city attractions, activities, and points of interest.
+
+## API Integrations
+
+**File:** `src/api/cityLocations.ts`
+**Backend:** `api/city-locations.ts`
+
+- Connects to Amadeus endpoint:
+  `https://test.api.amadeus.com/v1/reference-data/locations/cities`
+- Accepts `keyword` as a query parameter to search for cities.
+- Supports optional parameter `max` (default 15) to limit results.
+- Provides IATA code, city name, and geographic coordinates for destination search.
+
+**File:** `src/api/cityActivities.ts`
+**Backend:** `api/city-activities.ts`
+
+- Fetches city activities and attractions based on selected destination.
+- Enables discovery of top things to do around a user’s chosen location — forming the base of the **“Attractions”** feature in Voyant.
+
 ## Getting Started
 
 ### Prerequisites

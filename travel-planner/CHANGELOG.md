@@ -269,7 +269,7 @@ All notable changes to this project will be documented in this file.
 - Rearranged flight results layout for improved clarity and navigation.
 - Added `searchParams` field to FlightContextType to retain previous query data.
 
-## [0.25.0] - 2025-10-07
+## [0.25.0] - 2025-10-17
 
 ### Added
 
@@ -281,3 +281,49 @@ All notable changes to this project will be documented in this file.
 
 - Itinerary page now sends selected flight offer as state to confirmation API.
 - Strengthened API modularity and response handling.
+
+## [0.26.0] - 2025-10-18
+
+### Added
+
+- Default phone structure in `createTravelersFromPricing.ts` for consistent traveler data.
+- New `BillingModal` component with name, contact, and address fields.
+- Added `countries.ts` dataset for nationality and issuance dropdowns.
+- New passenger fields: issuanceLocation, nationality, issuanceDate.
+- Background image in `BookingHeader.tsx` for enhanced visual continuity.
+
+### Changed
+
+- Refined `Booking.ts` interface for better alignment with API booking payloads.
+
+## [0.27.0] - 2025-10-18
+
+### Added
+
+- Integrated Amadeus Flight Booking API (`/api/flight-booking`).
+- New interface `FlightOrderResponse.ts` for structured booking responses.
+- Added SuccessModal displaying traveler details, origin/destination, price, and ticketing delay.
+- Loading and error states in `booking.tsx` for submission feedback.
+
+### Improved
+
+- Completed full flight booking workflow (Search → Confirmation → Order → Success).
+- Enhanced booking page user experience with dynamic UI feedback.
+
+## [0.28.0] - 2025-10-07
+
+### Added
+
+- New destination and attractions modules.
+- Created interfaces:
+  - `CityLocation.ts` for structured city location data.
+  - `CityActivities.ts` for activity and attraction listings.
+- Added Amadeus endpoints:
+  - `https://test.api.amadeus.com/v1/reference-data/locations/cities` via `api/city-locations.ts`
+  - `https://test.api.amadeus.com/v1/shopping/activities` via `api/city-activities.ts`
+- City endpoint accepts `keyword` and supports up to 15 results for fast city search.
+- Location endpoint accepts `latitude` and `longitude`.
+
+### Improved
+
+- Extended data layer to support future destination discovery and trip planning features.
