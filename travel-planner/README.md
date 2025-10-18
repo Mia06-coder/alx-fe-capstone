@@ -624,6 +624,33 @@ https://test.api.amadeus.com/v1/reference-data/locations
 - Defines a type-safe structure for the flight order response received from the Amadeus booking endpoint.
 - Ensures seamless mapping between API response and success modal display.
 
+## Destination and City Data Integration
+
+**New Interfaces**
+
+- **`src/interfaces/CityLocation.ts`**
+  Defines the structure for city location data fetched from Amadeus.
+
+- **`src/interfaces/CityActivities.ts`**
+  Structures data for city attractions, activities, and points of interest.
+
+## API Integrations
+
+**File:** `src/api/cityLocations.ts`
+**Backend:** `api/city-locations.ts`
+
+- Connects to Amadeus endpoint:
+  `https://test.api.amadeus.com/v1/reference-data/locations/cities`
+- Accepts `keyword` as a query parameter to search for cities.
+- Supports optional parameter `max` (default 15) to limit results.
+- Provides IATA code, city name, and geographic coordinates for destination search.
+
+**File:** `src/api/cityActivities.ts`
+**Backend:** `api/city-activities.ts`
+
+- Fetches city activities and attractions based on selected destination.
+- Enables discovery of top things to do around a user’s chosen location — forming the base of the **“Attractions”** feature in Voyant.
+
 ## Getting Started
 
 ### Prerequisites

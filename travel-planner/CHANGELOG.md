@@ -309,3 +309,21 @@ All notable changes to this project will be documented in this file.
 
 - Completed full flight booking workflow (Search → Confirmation → Order → Success).
 - Enhanced booking page user experience with dynamic UI feedback.
+
+## [0.28.0] - 2025-10-07
+
+### Added
+
+- New destination and attractions modules.
+- Created interfaces:
+  - `CityLocation.ts` for structured city location data.
+  - `CityActivities.ts` for activity and attraction listings.
+- Added Amadeus endpoints:
+  - `https://test.api.amadeus.com/v1/reference-data/locations/cities` via `api/city-locations.ts`
+  - `https://test.api.amadeus.com/v1/shopping/activities` via `api/city-activities.ts`
+- City endpoint accepts `keyword` and supports up to 15 results for fast city search.
+- Location endpoint accepts `latitude` and `longitude`.
+
+### Improved
+
+- Extended data layer to support future destination discovery and trip planning features.
