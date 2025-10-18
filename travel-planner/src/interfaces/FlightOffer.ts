@@ -65,9 +65,15 @@ export interface Price {
   base: string;
   fees: Fee[];
   grandTotal: string;
+  additionalServices: AdditionalServices[];
 }
 
 export interface Fee {
+  amount: string;
+  type: string;
+}
+
+export interface AdditionalServices {
   amount: string;
   type: string;
 }
@@ -95,10 +101,24 @@ export interface FareDetailsBySegment {
   segmentId: string;
   cabin: string;
   fareBasis: string;
+  brandedFare: string;
+  brandedFareLabel: string;
   class: string;
   includedCheckedBags: {
-    weight: number;
-    weightUnit: string;
+    quantity: number;
+  };
+  includedCabinBags: {
+    quantity: number;
+  };
+  amenities: Amenities[];
+}
+
+export interface Amenities {
+  description: string;
+  isChargeable: boolean;
+  amenityType: string;
+  amenityProvider: {
+    name: string;
   };
 }
 

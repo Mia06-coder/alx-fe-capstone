@@ -1,31 +1,68 @@
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef } from "react";
 import { FaPeopleGroup } from "react-icons/fa6";
-import { FaMinus, FaPlus } from "react-icons/fa";
+import { useOutsideClick } from "../../hooks/useOutsideClick";
+import PassengerRow from "./PassengerRow";
 
-// Accessible hook to close modal when clicking outside
-function useOutsideClick(
-  ref: React.RefObject<HTMLDivElement>,
-  onClose: () => void
-) {
-  useEffect(() => {
-    function handleClick(event: MouseEvent) {
-      if (ref.current && !ref.current.contains(event.target as Node)) {
-        onClose();
-      }
-    }
-    document.addEventListener("mousedown", handleClick);
-    return () => document.removeEventListener("mousedown", handleClick);
-  }, [ref, onClose]);
+interface PassengerSelectorProps {
+  adults: number;
+  children: number;
+  infants: number;
+  setAdults: (value: number) => void;
+  setChildren: (value: number) => void;
+  setInfants: (value: number) => void;
 }
 
-export default function PassengerSelector() {
+export default function PassengerSelector({
+  adults,
+  children,
+  infants,
+  setAdults,
+  setChildren,
+  setInfants,
+}: PassengerSelectorProps) {
   const [isOpen, setIsOpen] = useState(false);
-  const [adults, setAdults] = useState(1);
-  const [children, setChildren] = useState(0);
-  const [infants, setInfants] = useState(0);
+  const [error, setError] = useState<string | null>(null);
 
-  const modalRef = useRef<HTMLDivElement>(null);
+  const modalRef = useRef<HTMLDivElement | null>(null);
   useOutsideClick(modalRef, () => setIsOpen(false));
+
+  const updateAdults = (value: number) => {
+    if (value < 1) return;
+    if (value + children + infants > 9) {
+      setError("You can only book up to 9 passengers total.");
+      return;
+    }
+    if (infants > value) {
+      setError("Infants cannot exceed the number of adults.");
+      return;
+    }
+    setError(null);
+    setAdults(value);
+  };
+
+  const updateChildren = (value: number) => {
+    if (value < 0) return;
+    if (adults + value + infants > 9) {
+      setError("You can only book up to 9 passengers total.");
+      return;
+    }
+    setError(null);
+    setChildren(value);
+  };
+
+  const updateInfants = (value: number) => {
+    if (value < 0) return;
+    if (adults + children + value > 9) {
+      setError("You can only book up to 9 passengers total.");
+      return;
+    }
+    if (value > adults) {
+      setError("Each infant must be accompanied by an adult.");
+      return;
+    }
+    setError(null);
+    setInfants(value);
+  };
 
   // Format displayed value like “2 Adults, 1 Child”
   const formattedPassengers = `${adults} Adult${adults > 1 ? "s" : ""}${
@@ -69,7 +106,7 @@ export default function PassengerSelector() {
               label="Adults"
               description="(2+ years)"
               count={adults}
-              onChange={setAdults}
+              onChange={updateAdults}
               min={1}
             />
 
@@ -78,7 +115,7 @@ export default function PassengerSelector() {
               label="Children"
               description="(2–12 years)"
               count={children}
-              onChange={setChildren}
+              onChange={updateChildren}
               min={0}
             />
 
@@ -87,7 +124,7 @@ export default function PassengerSelector() {
               label="Infants"
               description="(<2 years)"
               count={infants}
-              onChange={setInfants}
+              onChange={updateInfants}
               min={0}
             />
           </div>
@@ -97,9 +134,13 @@ export default function PassengerSelector() {
             For our youngest guests, infants are seated on a guardian’s lap.
           </p>
 
+          {/* Error Message */}
+          {error && <p className="text-xs text-red-500 mt-3">{error}</p>}
+
           {/* Done button */}
           <div className="flex justify-end mt-4">
             <button
+              type="button"
               onClick={() => setIsOpen(false)}
               className="px-4 py-2 bg-[var(--color-accent)] text-white text-sm rounded-lg hover:opacity-90 transition"
             >
@@ -108,56 +149,6 @@ export default function PassengerSelector() {
           </div>
         </div>
       )}
-    </div>
-  );
-}
-
-// Sub-component for each passenger category
-function PassengerRow({
-  label,
-  description,
-  count,
-  onChange,
-  min,
-}: {
-  label: string;
-  description: string;
-  count: number;
-  onChange: (n: number) => void;
-  min: number;
-}) {
-  return (
-    <div className="flex items-center justify-between">
-      <div>
-        <p className="font-medium text-[var(--color-text-primary)] text-sm">
-          {label}
-        </p>
-        <p className="text-xs text-[var(--color-text-muted)]">{description}</p>
-      </div>
-      <div className="flex items-center gap-3">
-        <button
-          aria-label={`Decrease ${label}`}
-          disabled={count <= min}
-          onClick={() => onChange(count - 1)}
-          className={`p-1 rounded-full border border-[var(--color-border)] ${
-            count <= min
-              ? "opacity-40 cursor-not-allowed"
-              : "hover:bg-[var(--color-border)]/20"
-          }`}
-        >
-          <FaMinus size={12} />
-        </button>
-        <span className="text-sm text-[var(--color-text-primary)] w-4 text-center">
-          {count}
-        </span>
-        <button
-          aria-label={`Increase ${label}`}
-          onClick={() => onChange(count + 1)}
-          className="p-1 rounded-full border border-[var(--color-border)] hover:bg-[var(--color-border)]/20"
-        >
-          <FaPlus size={12} />
-        </button>
-      </div>
     </div>
   );
 }

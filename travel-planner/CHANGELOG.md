@@ -150,3 +150,134 @@ All notable changes to this project will be documented in this file.
 
 - Unified design and information layout across Itinerary and Booking pages.
 - Enhanced user clarity and context during booking process.
+
+## [0.17.0] - 2025-10-10
+
+### Added
+
+- Installed **Axios** for HTTP requests.
+- Added `.env*` to `.gitignore` for secure environment variable management.
+- Created `src/api/auth.ts` for Amadeus API authentication using key and secret.
+- Created `src/api/client.ts` for reusable Axios instance with base URL and token handling.
+
+### Improved
+
+- Centralized API logic and improved maintainability for future endpoints (flights, hotels, destinations).
+- Strengthened project security by ignoring environment configuration files.
+
+## [0.18.0] - 2025-10-10
+
+### Added
+
+- `FlightOfferParams` interface for structured API parameter typing.
+- `flightOffers.ts` API module to fetch flight offers via Amadeus endpoint.
+- `FlightContext.tsx` to manage flights, loading state, and error handling using Context API.
+- `useFlight.ts` custom hook for consuming flight context easily.
+- Wrapped app with `FlightProvider` for global flight state access.
+
+### Improved
+
+- Centralized flight data management and API handling.
+- Simplified flight fetching logic with cleaner component integration.
+
+## [0.19.0] - 2025-10-10
+
+### Added
+
+- Validation rules for passengers: (adults + children + infants ≤ 9, infants ≤ adults).
+- ⌨`useOutsideClick` hook now supports closing modals with the Escape key.
+- Extracted flight search form into `FlightSearchForm.tsx` component for modularity.
+
+### Changed
+
+- Updated `travelClass` type in `FlightOfferParams` to specific allowed values.
+- Set all non-submit buttons to `type="button"` to avoid unintended form submissions.
+- Form submission now triggers `fetchFlights` from `FlightContext`.
+
+### Improved
+
+- Enhanced accessibility, validation, and code structure in flight search flow.
+
+## [0.20.0] - 2025-10-11
+
+### Added
+
+- `src/api/airport.ts`: IATA code lookup via Amadeus API
+- `src/components/FlightCardSkeleton.tsx`: Loading UI placeholder
+- Proxy setup in` vite.config.ts` for API requests
+
+### Improved
+
+- Added token expiry check and refresh in auth.ts
+- Implemented date validation for departure and return inputs
+
+### Fixed
+
+- Minor performance improvements in API call structure
+
+## [0.21.0] - 2025-10-16
+
+### Added
+
+- `src/utils/handleApiError.ts`: Centralized API error handler.
+- `vercel.json`: Deployment setup for serverless environment.
+- Vercel Node runtime support (`@vercel/node`).
+
+### Changed
+
+- `src/api/client.ts`: Automatically switches between local and production API base URLs.
+- `src/api/token.ts`: Replaces `auth.ts` for token management.
+- `vite.config.ts`: Includes HTML assets in the build output.
+
+### Improved
+
+- Unified and type-safe API error handling across backend routes.
+
+## [0.22.0] - 2025-10-16
+
+**Added**
+
+- `src/api/flightOffers.ts`: Fetches flight offers from Amadeus `/v2/shopping/flight-offers`.
+- `src/api/airportLocations.ts`: Retrieves airports or cities from Amadeus `/v1/reference-data/locations`.
+
+**Changed**
+
+- Updated flight cards to include selected flight state.
+
+## [0.23.0] - 2025-10-17
+
+**Changed**
+
+- Updated FlightOffer.ts interface to reflect actual Amadeus sample structure.
+- Renamed and refactored getCabinAndBags.ts → getCabin.ts.
+- Updated references in FlightCard and related components.
+
+**Improved**
+
+- Data accuracy and type safety for flight offer details.
+- Simplified code readability and maintainability across utilities and components.
+
+## [0.24.0] - 2025-10-17
+
+### Added
+
+- Modify Search functionality on the flight results page with form prefill.
+- `isLoading` state and 2s debounce in AirportInput for optimized performance.
+
+### Changed
+
+- Rearranged flight results layout for improved clarity and navigation.
+- Added `searchParams` field to FlightContextType to retain previous query data.
+
+## [0.25.0] - 2025-10-07
+
+### Added
+
+- Integrated **flight confirmation API** to fetch verified flight offers (`/flight-confirmation`).
+- Extended `ConfirmedFlightOfferData` with `bookingRequirements` for email and mobile validation.
+- Added background image to itinerary header for improved visual context.
+
+### Improved
+
+- Itinerary page now sends selected flight offer as state to confirmation API.
+- Strengthened API modularity and response handling.

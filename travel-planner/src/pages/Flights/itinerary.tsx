@@ -1,34 +1,43 @@
+// src/pages/Flights/itinerary.tsx
 import { useEffect, useState } from "react";
-import type { FlightOffer } from "../../interfaces/ConfirmedFlightOffer";
 import ItineraryHeader from "../../components/flight/ItineraryHeader";
 import FlightItineraryDetails from "../../components/flight/ItineraryDetails";
 import { getAirlineName } from "../../utils/getAirlineName";
 import ItineraryFareDetails from "../../components/flight/ItineraryFareDetails";
+import { useLocation } from "react-router-dom";
+import type { ConfirmedFlightOfferData } from "../../interfaces/ConfirmedFlightOffer";
+import type { FlightOffer } from "../../interfaces/FlightOffer";
+import { getConfirmedFlight } from "../../api/flightConfirmation";
 
 export default function FlightItinerary() {
-  const [flight, setFlight] = useState<FlightOffer[]>([]);
+  const { state } = useLocation();
+  const [flightData, setFlightData] = useState<ConfirmedFlightOfferData | null>(
+    null
+  );
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
-  // Fetch flight data from a local JSON file
-  useEffect(() => {
-    const fetchFlights = async () => {
-      try {
-        const response = await fetch("/confirmedflightoffers.json");
-        if (!response.ok) {
-          throw new Error("Failed to fetch flight data");
-        }
-        const data = await response.json();
-        setFlight(data.data.flightOffers);
+  const flight: FlightOffer = state?.flight;
 
-        setLoading(false);
-      } catch (err) {
-        setError((err as Error).message);
+  useEffect(() => {
+    if (!flight) return;
+    const fetchFlightDetails = async () => {
+      try {
+        const data = await getConfirmedFlight(flight);
+        console.log(`Flight Details: ${data}`);
+        setFlightData(data);
+      } catch (err: unknown) {
+        if (err instanceof Error) {
+          setError(err.message);
+        } else {
+          setError("Failed to fetch pricing.");
+        }
+      } finally {
         setLoading(false);
       }
     };
-    fetchFlights();
-  }, []);
+    fetchFlightDetails();
+  }, [flight]);
 
   if (loading) {
     return <div className="container p-6">Loading...</div>;
@@ -38,26 +47,32 @@ export default function FlightItinerary() {
     return <div className="container p-6">Error: {error}</div>;
   }
 
+  if (!flightData) {
+    return <div>No flight</div>;
+  }
+
   const cabin = new Set(
-    flight[0].travelerPricings.flatMap((t) =>
+    flightData.flightOffers[0].travelerPricings.flatMap((t) =>
       t.fareDetailsBySegment.map((seg) => seg.cabin)
     )
   );
 
   return (
     <div className="max-w-7xl container mx-auto p-6">
-      <ItineraryHeader flight={flight[0]} />
+      <ItineraryHeader flight={flightData.flightOffers[0]} />
 
       <div className="mx-8 my-16 lg:grid lg:grid-cols-2 gap-12">
         <FlightItineraryDetails
-          itineraries={flight[0].itineraries}
-          airlineName={flight[0].validatingAirlineCodes.map((airline) =>
-            getAirlineName(airline)
+          itineraries={flightData.flightOffers[0].itineraries}
+          airlineName={flightData.flightOffers[0].validatingAirlineCodes.map(
+            (airline) => getAirlineName(airline)
           )}
           cabin={[...cabin].join(", ")}
         />
 
-        <ItineraryFareDetails travelerPricings={flight[0].travelerPricings} />
+        <ItineraryFareDetails
+          travelerPricings={flightData.flightOffers[0].travelerPricings}
+        />
       </div>
     </div>
   );
