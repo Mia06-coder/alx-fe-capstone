@@ -1,4 +1,4 @@
-// src/pages/BookingPage.tsx
+// src/pages/booking.tsx
 import { useEffect, useState } from "react";
 import type { Billing, FlightOrder, Traveler } from "../../interfaces/Booking";
 import { FaChevronRight, FaCheck } from "react-icons/fa";
@@ -10,8 +10,16 @@ import ItineraryFareDetails from "../../components/flight/ItineraryFareDetails";
 import Button from "../../components/common/Button";
 import type { FlightOffer } from "../../interfaces/ConfirmedFlightOffer";
 import BillingModal from "../../components/flight/BillingModal";
+import { bookFlight } from "../../api/flightBooking";
+import type { FlightOrderResponse } from "../../interfaces/FlightOrderResponse";
+import BookingSuccessModal from "../../components/flight/BookingSuccessModal";
 
 export default function FlightBooking() {
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const [bookingData, setBookingData] = useState<FlightOrderResponse | null>(
+    null
+  );
   const [passengers, setPassengers] = useState<Traveler[]>([]);
   const [activePassenger, setActivePassenger] = useState<Traveler | null>(null);
 
@@ -72,7 +80,20 @@ export default function FlightBooking() {
         },
       },
     };
-    console.log(order);
+
+    try {
+      setLoading(true);
+      const confirmation = await bookFlight(order);
+      setBookingData(confirmation);
+    } catch (err: unknown) {
+      if (err instanceof Error) {
+        setError(err.message);
+      } else {
+        setError("Failed to book flight.");
+      }
+    } finally {
+      setLoading(false);
+    }
   };
 
   const handleBillingSave = (updatedBilling: Billing) => {
@@ -212,13 +233,23 @@ export default function FlightBooking() {
           </span>
         </p>
 
+        {/* Error */}
+        {error && <div className="text-red-500">Error: {error}</div>}
+
         {/* Confirm Button */}
         <Button
-          label="Confirm & Pay"
+          label={loading ? `Booking Flight...` : `Confirm & Pay`}
           ariaLabel={`Confirm booking `}
           onClick={handleConfirmBooking}
           className="mt-6 block mx-auto bg-gradient-to-br from-yellow-500 via-amber-600 to-yellow-700 bottom-4 backdrop-blur-4xl sticky"
         />
+
+        {bookingData && (
+          <BookingSuccessModal
+            booking={bookingData}
+            onClose={() => setBookingData(null)}
+          />
+        )}
       </div>
     </div>
   );

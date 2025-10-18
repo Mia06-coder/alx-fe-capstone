@@ -593,6 +593,37 @@ https://test.api.amadeus.com/v1/reference-data/locations
 
   Enables pre-filled select lists for demo and testing before connecting to a live data source.
 
+## Flight Booking API Integration
+
+**File:** `src/api/flight-booking.ts`
+
+- Integrated **Amadeus Flight Orders API** (`https://test.api.amadeus.com/v1/booking/flight-orders`).
+- Sends structured booking data from the form, including traveler details, contact info, and confirmed offer data.
+- Implements standardized error handling and response validation.
+
+## Booking Page Improvements
+
+**File:** `src/pages/booking.tsx`
+
+- Added **loading** and **error** states for real-time feedback during booking submission.
+- On successful booking:
+
+  - Displays a **SuccessModal** summarizing key details:
+
+    - Traveler names
+    - Origin and destination
+    - Total price
+    - Ticketing delay
+
+- Improved UX through clear visual states and responsive feedback.
+
+## New Interfaces
+
+**File:** `src/interfaces/FlightOrderResponse.ts`
+
+- Defines a type-safe structure for the flight order response received from the Amadeus booking endpoint.
+- Ensures seamless mapping between API response and success modal display.
+
 ## Getting Started
 
 ### Prerequisites

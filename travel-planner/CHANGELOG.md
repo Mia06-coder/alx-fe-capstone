@@ -295,3 +295,17 @@ All notable changes to this project will be documented in this file.
 ### Changed
 
 - Refined `Booking.ts` interface for better alignment with API booking payloads.
+
+## [0.27.0] - 2025-10-18
+
+### Added
+
+- Integrated Amadeus Flight Booking API (`/api/flight-booking`).
+- New interface `FlightOrderResponse.ts` for structured booking responses.
+- Added SuccessModal displaying traveler details, origin/destination, price, and ticketing delay.
+- Loading and error states in `booking.tsx` for submission feedback.
+
+### Improved
+
+- Completed full flight booking workflow (Search → Confirmation → Order → Success).
+- Enhanced booking page user experience with dynamic UI feedback.
