@@ -536,6 +536,63 @@ https://test.api.amadeus.com/v1/reference-data/locations
 - Now passes the selected flight as state to the confirmation API.
 - Added a **background image** in `ItineraryHeader.tsx` depicting a cityscape or destination, enhancing the visual appeal and thematic immersion.
 
+## Booking System Improvements
+
+**File:** `src/utils/createTravelersFromPricing.ts`
+
+- Added **default traveler contact structure** to simplify form initialization:
+
+  ```ts
+  phones: [
+    {
+      deviceType: "MOBILE",
+      countryCallingCode: "263",
+      number: "",
+    },
+  ];
+  ```
+
+- Ensures every traveler object contains a standardized phone schema compatible with the Amadeus booking API.
+
+**File:** `src/interfaces/Booking.ts`
+
+- Updated to more accurately reflect the booking payload and response structure for future API integration.
+
+**UI Enhancements**
+
+- Added **background image** to `src/components/flight/BookingHeader.tsx` for improved aesthetics and contextual continuity with itinerary visuals.
+- Created **`src/components/BillingModal.tsx`** to capture essential user billing information:
+
+  - Full name
+  - Contact number
+  - Billing address and postal details
+
+- Updated **PassengerModal** to include new form fields:
+
+  - `issuanceLocation`
+  - `nationality`
+  - `issuanceDate`
+
+**File:** `src/data/countries.ts`
+
+- Added a temporary country dataset for nationality and issuance dropdowns:
+
+  ```ts
+  export const countries = [
+    { code: "ZW", name: "Zimbabwe" },
+    { code: "FR", name: "France" },
+    { code: "US", name: "United States" },
+    { code: "ZA", name: "South Africa" },
+    { code: "GB", name: "United Kingdom" },
+    { code: "CN", name: "China" },
+    { code: "IN", name: "India" },
+    { code: "DE", name: "Germany" },
+    { code: "KE", name: "Kenya" },
+  ];
+  ```
+
+  Enables pre-filled select lists for demo and testing before connecting to a live data source.
+
 ## Getting Started
 
 ### Prerequisites

@@ -269,7 +269,7 @@ All notable changes to this project will be documented in this file.
 - Rearranged flight results layout for improved clarity and navigation.
 - Added `searchParams` field to FlightContextType to retain previous query data.
 
-## [0.25.0] - 2025-10-07
+## [0.25.0] - 2025-10-17
 
 ### Added
 
@@ -281,3 +281,17 @@ All notable changes to this project will be documented in this file.
 
 - Itinerary page now sends selected flight offer as state to confirmation API.
 - Strengthened API modularity and response handling.
+
+## [0.26.0] - 2025-10-18
+
+### Added
+
+- Default phone structure in `createTravelersFromPricing.ts` for consistent traveler data.
+- New `BillingModal` component with name, contact, and address fields.
+- Added `countries.ts` dataset for nationality and issuance dropdowns.
+- New passenger fields: issuanceLocation, nationality, issuanceDate.
+- Background image in `BookingHeader.tsx` for enhanced visual continuity.
+
+### Changed
+
+- Refined `Booking.ts` interface for better alignment with API booking payloads.

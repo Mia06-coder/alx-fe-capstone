@@ -4,6 +4,7 @@ import { useForm, Controller } from "react-hook-form";
 import type { Traveler } from "../interfaces/Booking";
 import Button from "./common/Button";
 import Accordion from "./common/Accordion";
+import { countries } from "../data/countries";
 
 interface Props {
   passenger: Traveler;
@@ -243,21 +244,129 @@ export default function PassengerModal({ passenger, onSave, onClose }: Props) {
               <Controller
                 name="documents.0.issuanceCountry"
                 control={control}
-                rules={{ required: "Issuance country is required" }}
+                rules={{
+                  required: "Issuance country is required",
+                  pattern: {
+                    value: /^[A-Z]{2}$/,
+                    message: "Invalid country code format",
+                  },
+                }}
                 render={({ field }) => (
                   <div>
                     <label className="text-sm text-[var(--color-text-secondary)]">
-                      Issuance Country
+                      Issuance Country <span className="text-red-500">*</span>
                     </label>
-                    <input
+                    <select
                       {...field}
-                      placeholder="Issuance Country"
-                      className="mt-1 border p-2 rounded-lg w-full"
-                    />
+                      className="mt-1 border p-2 rounded-lg w-full bg-[var(--color-bg-solid)]"
+                    >
+                      <option value="">---</option>
+                      {countries.map((c) => (
+                        <option key={c.code} value={c.code}>
+                          {c.name}
+                        </option>
+                      ))}
+                    </select>
                     {errorText(errors.documents?.[0]?.issuanceCountry?.message)}
                   </div>
                 )}
               />
+
+              <Controller
+                name="documents.0.issuanceLocation"
+                control={control}
+                rules={{
+                  required: "Issuance location is required",
+                  pattern: {
+                    value: /^[A-Z]{2}$/,
+                    message: "Invalid country code format",
+                  },
+                }}
+                render={({ field }) => (
+                  <div>
+                    <label className="text-sm text-[var(--color-text-secondary)]">
+                      Issuance Location <span className="text-red-500">*</span>
+                    </label>
+                    <select
+                      {...field}
+                      className="mt-1 border p-2 rounded-lg w-full bg-[var(--color-bg-solid)]"
+                    >
+                      <option value="">---</option>
+                      {countries.map((c) => (
+                        <option key={c.code} value={c.code}>
+                          {c.name}
+                        </option>
+                      ))}
+                    </select>
+                    {errorText(
+                      errors.documents?.[0]?.issuanceLocation?.message
+                    )}
+                  </div>
+                )}
+              />
+
+              <Controller
+                name="documents.0.nationality"
+                control={control}
+                rules={{
+                  required: "Nationality is required",
+                  pattern: {
+                    value: /^[A-Z]{2}$/,
+                    message: "Invalid country code format",
+                  },
+                }}
+                render={({ field }) => (
+                  <div>
+                    <label className="text-sm text-[var(--color-text-secondary)]">
+                      Nationality <span className="text-red-500">*</span>
+                    </label>
+                    <select
+                      {...field}
+                      className="mt-1 border p-2 rounded-lg w-full bg-[var(--color-bg-solid)]"
+                    >
+                      <option value="">---</option>
+                      {countries.map((c) => (
+                        <option key={c.code} value={c.code}>
+                          {c.name}
+                        </option>
+                      ))}
+                    </select>
+                    {errorText(errors.documents?.[0]?.nationality?.message)}
+                  </div>
+                )}
+              />
+
+              <Controller
+                name="documents.0.validityCountry"
+                control={control}
+                rules={{
+                  required: "Validity country is required",
+                  pattern: {
+                    value: /^[A-Z]{2}$/,
+                    message: "Invalid country code format",
+                  },
+                }}
+                render={({ field }) => (
+                  <div>
+                    <label className="text-sm text-[var(--color-text-secondary)]">
+                      Validity Country <span className="text-red-500">*</span>
+                    </label>
+                    <select
+                      {...field}
+                      className="mt-1 border p-2 rounded-lg w-full bg-[var(--color-bg-solid)]"
+                    >
+                      <option value="">---</option>
+                      {countries.map((c) => (
+                        <option key={c.code} value={c.code}>
+                          {c.name}
+                        </option>
+                      ))}
+                    </select>
+                    {errorText(errors.documents?.[0]?.validityCountry?.message)}
+                  </div>
+                )}
+              />
+
               <Controller
                 name="documents.0.issuanceDate"
                 control={control}
