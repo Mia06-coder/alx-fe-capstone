@@ -651,6 +651,32 @@ https://test.api.amadeus.com/v1/reference-data/locations
 - Fetches city activities and attractions based on selected destination.
 - Enables discovery of top things to do around a user’s chosen location — forming the base of the **“Attractions”** feature in Voyant.
 
+## Attractions Module
+
+This release introduces a new **Attractions** feature where users can search for cities and explore available attractions.
+
+**Key additions:**
+
+- **CityCard** – Displays the city name and country code from search results.
+- **DestinationCard** – Highlights attraction details including image, description, and price, with a _Book Now_ button.
+- **SearchBar** – Enables city-based search functionality.
+- **Attractions Page** – Combines city and attraction display with API integration.
+
+**APIs & Interfaces:**
+
+- `src/interfaces/CityLocation.ts`
+- `src/interfaces/CityActivities.ts`
+- `src/api/cityActivities.ts`
+- `src/api/cityLocations.ts`
+- `api/city-activities.ts`
+- `api/city-locations.ts`
+
+**Routing:**
+
+```tsx
+<Route path="/attractions" element={<Destination />} />
+```
+
 ## Getting Started
 
 ### Prerequisites

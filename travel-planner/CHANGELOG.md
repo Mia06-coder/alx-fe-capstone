@@ -310,7 +310,7 @@ All notable changes to this project will be documented in this file.
 - Completed full flight booking workflow (Search → Confirmation → Order → Success).
 - Enhanced booking page user experience with dynamic UI feedback.
 
-## [0.28.0] - 2025-10-07
+## [0.28.0] - 2025-10-18
 
 ### Added
 
@@ -327,3 +327,33 @@ All notable changes to this project will be documented in this file.
 ### Improved
 
 - Extended data layer to support future destination discovery and trip planning features.
+
+Perfect 👏 Here’s a polished changelog entry for that PR:
+
+---
+
+## [0.29.0] - 2025-10-18
+
+### Added
+
+- **CityCard.tsx** – Displays city name and country code for search results.
+- **DestinationCard.tsx** – Shows attraction photo, name, description, price, and includes a **“Book Now”** button linking to the booking page.
+- **SearchBar.tsx** – Implements city search functionality for attractions.
+- **Attractions Page (`src/pages/Attractions/index.tsx`)** – Allows users to search for cities and view corresponding attractions.
+- **City & Activities APIs and Interfaces**:
+
+  - `src/interfaces/CityLocation.ts`
+  - `src/interfaces/CityActivities.ts`
+  - `src/api/cityActivities.ts`
+  - `src/api/cityLocations.ts`
+  - `api/city-activities.ts`
+  - `api/city-locations.ts`
+
+### Modified
+
+- **Tabs.tsx** – Added a new _Attractions_ tab link.
+- **App Routes** – Added route:
+
+  ```tsx
+  <Route path="/attractions" element={<Destination />} />
+  ```
