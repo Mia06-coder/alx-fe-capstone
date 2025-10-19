@@ -1,6 +1,8 @@
 // src/components/hotel/HotelCard.tsx
 import type { Hotel } from "../../interfaces/Hotel";
 import hotelImg from "../../assets/images/hotels/hotel1.jpg";
+import { useItinerary } from "../../hooks/useItinerary";
+import Button from "../common/Button";
 
 interface Props {
   hotel: Hotel;
@@ -8,6 +10,14 @@ interface Props {
 }
 
 export default function HotelCard({ hotel, onSelect }: Props) {
+  const { addItem, items } = useItinerary();
+
+  const handleAdd = () => {
+    addItem({ id: hotel.name, type: "hotel", data: hotel });
+  };
+
+  const alreadyAdded = items.some((i) => i.id === hotel.name);
+
   return (
     <div
       role="button"
@@ -46,6 +56,12 @@ export default function HotelCard({ hotel, onSelect }: Props) {
             {hotel.iataCode}
           </span>
         </div>
+        <Button
+          label={alreadyAdded ? "Added" : "Add to Itinerary"}
+          onClick={handleAdd}
+          disabled={alreadyAdded}
+          className="mt-5 bg-[var(--color-accent)] text-white px-4 py-2 rounded"
+        />
       </div>
     </div>
   );

@@ -3,7 +3,9 @@
 Voyant is a modern travel planner application built with **Vite** and **TailwindCSS**.  
 It allows users to search for destinations, view detailed travel information, and plan trips by creating personalized itineraries.
 
-![Screenshot](./src/assets/images/screenshots/image1.png)
+| ![Screenshot](./src/assets/images/screenshots/image1.png) | ![Screenshot](./src/assets/images/screenshots/image2.png) | ![Screenshot](./src/assets/images/screenshots/image3.png) |
+| :-------------------------------------------------------: | :-------------------------------------------------------: | :-------------------------------------------------------: |
+| ![Screenshot](./src/assets/images/screenshots/image4.png) | ![Screenshot](./src/assets/images/screenshots/image5.png) |                                                           |
 
 ## Features
 
@@ -73,10 +75,6 @@ The **Flights Landing Page** provides users with a visually engaging interface t
 - **Tabs Navigation**  
   Switch between **Flights**, **Hotels**, and **Attractions** sections (UI only, functionality coming soon).
 
-### ⚠️ Note
-
-Currently, the page is **not functional** — form submissions and tab content switching will be implemented in future iterations.
-
 ## Routing & Project Structure
 
 ### Routing
@@ -98,8 +96,7 @@ A reusable Button component was added to maintain consistent styling and behavio
 
 ## Flights Results Page
 
-The **Flights Results Page** displays available flight options based on user input.  
-Currently, it uses **mock data** to simulate results until the Amadeus API integration is complete.
+The **Flights Results Page** displays available flight options based on user input.
 
 ### Features
 
@@ -112,11 +109,6 @@ Currently, it uses **mock data** to simulate results until the Amadeus API integ
 - Each **FlightCard** now links to its respective **Itinerary Details Page**.
 - Enhances navigation by allowing users to click a flight result and view detailed trip information.
 
-### Data
-
-For now, the data is static and located in a mock data file within the project.  
-This setup allows for easy testing of the layout and styling before connecting to the live API.
-
 ## Utility Functions & Data Structures
 
 Voyant now includes **helper functions** and **data interfaces** to streamline flight data handling:
@@ -125,7 +117,7 @@ Voyant now includes **helper functions** and **data interfaces** to streamline f
 
 - `formatDate(isoString: string): string`
 - `formatStops(segments: Segment[]): string`
-- `getCabinClassAndBaggage(flight: flightOffer):{cabin: string;bags: string;}: string`
+- `getCabin(flight: flightOffer):{cabin: string}`
 
 ### Flight Data Structures
 
@@ -146,7 +138,7 @@ Voyant now includes **helper functions** and **data interfaces** to streamline f
 
 ## Flights Results Integration
 
-The **Flights Results Page** now dynamically fetches data from a local mock JSON file (`/flightoffers.json`) and renders it using the **FlightCard** component.
+The **Flights Results Page** now dynamically fetches data from AMADEUS api and renders it using the **FlightCard** component.
 
 ### Implementation Overview
 
@@ -709,6 +701,12 @@ The **Hotel Search** feature enables users to view nearby hotels using Amadeus�
 
   - Fixed gradient background for the SearchBar icon for better visibility.
 
+## Itinerary Planner — Your trip, organized your way!
+
+You can now plan and manage your personalized travel itinerary directly in the app.
+Add favorite hotels and attractions to your itinerary from the search results, view them in a clean, organized layout, and remove or clear all with a single click.
+Everything is managed through a new Itinerary Context, making the experience seamless and dynamic.
+
 ## Getting Started
 
 ### Prerequisites
@@ -742,12 +740,12 @@ npm run build
 
 ## Roadmap
 
-- [ ] Implement destination search
-- [ ] Integrate flight offers from Amadeus API
-- [ ] Integrate hotel listings
-- [ ] Add itinerary planning feature
+- [x] Implement destination search
+- [x] Integrate flight offers from Amadeus API
+- [x] Integrate hotel listings
+- [x] Add itinerary planning feature
 - [ ] User authentication (future)
-- [ ] Mobile-friendly responsive design
+- [x] Mobile-friendly responsive design
 
 ## License
 

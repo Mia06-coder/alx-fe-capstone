@@ -388,3 +388,37 @@ Perfect 👏 Here’s a polished changelog entry for that PR:
 ![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?logo=typescript&logoColor=white)
 ![Axios](https://img.shields.io/badge/Axios-5A29E4?logo=axios&logoColor=white)
 ![Amadeus API](https://img.shields.io/badge/Amadeus%20API-002F87?logo=amadeus&logoColor=white)
+
+## [0.31.0] - 2025-10-19
+
+### Added
+
+- **Itinerary Planner Module**
+
+  - Introduced new `/itineraryplanner` route:
+
+    ```tsx
+    <Route path="/itineraryplanner" element={<ItineraryPlanner />} />
+    ```
+
+  - Created `ItineraryContext` with `useItinerary` hook for managing saved activities and hotels globally.
+  - Added `ItineraryPlanner` page displaying all saved items (type, name) in a clean tabular layout with:
+
+    - Individual **remove** buttons.
+    - **Clear All** button to reset the itinerary.
+
+  - Updated `Tabs.tsx` navigation:
+
+    ```tsx
+    { label: "Itinerary", icon: FaPen, path: "/itineraryplanner" }
+    ```
+
+  - Added **“Add to Itinerary”** buttons on:
+
+    - `HotelCard.tsx` (saves selected hotel)
+    - `DestinationCard.tsx` (saves selected activity)
+
+### Improved
+
+- Enhanced reactivity in itinerary context to immediately reflect additions and removals.
+- Improved layout consistency across hotel and attraction cards.

@@ -8,6 +8,7 @@ import { useLocation } from "react-router-dom";
 import type { ConfirmedFlightOfferData } from "../../interfaces/ConfirmedFlightOffer";
 import type { FlightOffer } from "../../interfaces/FlightOffer";
 import { getConfirmedFlight } from "../../api/flightConfirmation";
+import LoadingFlightItinerary from "../../components/flight/LoadingFlightItinerary";
 
 export default function FlightItinerary() {
   const { state } = useLocation();
@@ -40,7 +41,7 @@ export default function FlightItinerary() {
   }, [flight]);
 
   if (loading) {
-    return <div className="container p-6">Loading...</div>;
+    return <LoadingFlightItinerary />;
   }
 
   if (error) {

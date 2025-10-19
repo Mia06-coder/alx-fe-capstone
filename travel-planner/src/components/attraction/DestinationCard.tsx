@@ -1,8 +1,18 @@
 // src/components/attraction/DestinationCard.tsx
 import type { Activity } from "../../interfaces/CityActivities";
 import { FaClock } from "react-icons/fa";
+import Button from "../common/Button";
+import { useItinerary } from "../../hooks/useItinerary";
 
 export default function DestinationCard({ act }: { act: Activity }) {
+  const { addItem, items } = useItinerary();
+
+  const handleAdd = () => {
+    addItem({ id: act.id, type: "activity", data: act });
+  };
+
+  const alreadyAdded = items.some((i) => i.id === act.id);
+
   return (
     <div className="p-2 bg-white/10 flex border border-[var(--color-border)] rounded-2xl overflow-hidden shadow">
       <div className="relative overflow-hidden w-35 h-full shrink-0 rounded-2xl">
@@ -42,6 +52,12 @@ export default function DestinationCard({ act }: { act: Activity }) {
         >
           Book Now
         </a>
+        <Button
+          label={alreadyAdded ? "Added" : "Add to Itinerary"}
+          onClick={handleAdd}
+          disabled={alreadyAdded}
+          className="mt-3 bg-[var(--color-accent)] text-white px-4 py-2 rounded"
+        />
       </div>
     </div>
   );

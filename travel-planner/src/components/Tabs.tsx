@@ -1,19 +1,20 @@
 // src/components/Tabs.tsx
-import { FaHotel, FaMap, FaPlane } from "react-icons/fa";
+import { FaHotel, FaMap, FaPen, FaPlane } from "react-icons/fa";
 import { useLocation, Link } from "react-router-dom"; // if using React Router
 
 const tabs = [
   { label: "Flights", icon: FaPlane, path: "/" },
   { label: "Hotels", icon: FaHotel, path: "/hotels" },
   { label: "Attractions", icon: FaMap, path: "/attractions" },
+  { label: "Itinerary", icon: FaPen, path: "/itineraryplanner" },
 ];
 
 export default function Tabs() {
   const location = useLocation(); // gets current route path
 
   return (
-    <nav className="mx-auto my-6 text-lg font-semibold max-w-md">
-      <ul className="grid grid-cols-3">
+    <nav className="mx-auto my-6 text-lg font-semibold w-fit">
+      <ul className="grid grid-cols-4">
         {tabs.map((tab) => {
           const Icon = tab.icon;
           const isActive = location.pathname === tab.path;
