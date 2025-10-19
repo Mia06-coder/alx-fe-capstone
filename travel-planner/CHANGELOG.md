@@ -357,3 +357,34 @@ Perfect 👏 Here’s a polished changelog entry for that PR:
   ```tsx
   <Route path="/attractions" element={<Destination />} />
   ```
+
+## [0.30.0] - 2025-10-18
+
+### Added
+
+- Integrated Amadeus `/reference-data/locations/hotels/by-geocode` API:
+
+  - `api/hotel-list.ts`, `src/api/hotelList.ts`
+
+- Created `HotelCard.tsx` – Displays default hotel image, name, chain code, city, distance, and IATA code.
+- Added `src/interfaces/Hotel.ts` for typing.
+- Added default hotel image in `src/assets/images/hotels/hotel1.jpg`.
+- Added `src/pages/Hotels/index.tsx` and route:
+
+  ```tsx
+  <Route path="/hotels" element={<HotelSearch />} />
+  ```
+
+- Updated `Tabs.tsx` to dynamically highlight the active tab using `useLocation`.
+
+* **UI Enhancements**
+
+- Fixed SearchBar icon background gradient.
+
+### Tech Stack
+
+![Vite](https://img.shields.io/badge/Vite-646CFF?logo=vite&logoColor=white)
+![React](https://img.shields.io/badge/React-20232A?logo=react&logoColor=61DAFB)
+![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?logo=typescript&logoColor=white)
+![Axios](https://img.shields.io/badge/Axios-5A29E4?logo=axios&logoColor=white)
+![Amadeus API](https://img.shields.io/badge/Amadeus%20API-002F87?logo=amadeus&logoColor=white)

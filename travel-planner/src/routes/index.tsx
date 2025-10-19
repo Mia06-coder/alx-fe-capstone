@@ -5,6 +5,7 @@ import FlightsResults from "../pages/Flights/results";
 import FlightBooking from "../pages/Flights/booking";
 import FlightItinerary from "../pages/Flights/itinerary";
 import Destination from "../pages/Attractions";
+import HotelSearch from "../pages/Hotels";
 
 const AppRoutes = () => (
   <Routes>
@@ -13,6 +14,7 @@ const AppRoutes = () => (
     <Route path="/flight/booking/:id" element={<FlightBooking />} />
     <Route path="/flight/itinerary/:id" element={<FlightItinerary />} />
     <Route path="/attractions" element={<Destination />} />
+    <Route path="/hotels" element={<HotelSearch />} />
   </Routes>
 );
 

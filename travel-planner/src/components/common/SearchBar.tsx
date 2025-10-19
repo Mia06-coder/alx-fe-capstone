@@ -20,7 +20,7 @@ export default function SearchBar({ query, handleSearch, onChange }: Props) {
       />
       <button
         onClick={handleSearch}
-        className="bg text-white p-2 rounded-full w-9 h-9"
+        className="bg-gradient-to-tr from-yellow-500 via-amber-600 to-yellow-700 text-white p-2 rounded-full w-9 h-9"
       >
         <FaSearch size={20} />
       </button>

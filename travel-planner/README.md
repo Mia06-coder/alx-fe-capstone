@@ -677,6 +677,38 @@ This release introduces a new **Attractions** feature where users can search for
 <Route path="/attractions" element={<Destination />} />
 ```
 
+## Hotel Search Module
+
+The **Hotel Search** feature enables users to view nearby hotels using Amadeus’s geocode-based hotel listing endpoint.
+
+**Key additions:**
+
+- **API Integration**
+
+  - `api/hotel-list.ts` (server-side)
+  - `src/api/hotelList.ts` (client-side)
+  - Fetches hotels via `/reference-data/locations/hotels/by-geocode` using latitude and longitude parameters from selected city/location.
+
+- **Components**
+
+  - **HotelCard** – Displays hotel name, chain code, city, country, IATA code, and distance.
+    Includes a **default hotel image** (`src/assets/images/hotels/hotel1.jpg`) since API results lack images.
+  - **Tabs** – Now dynamically highlights the active section (Flights, Attractions, Hotels) using `useLocation`.
+
+- **Interfaces**
+
+  - `src/interfaces/Hotel.ts` for consistent data typing.
+
+- **Routing**
+
+  ```tsx
+  <Route path="/hotels" element={<HotelSearch />} />
+  ```
+
+- **UI Enhancements**
+
+  - Fixed gradient background for the SearchBar icon for better visibility.
+
 ## Getting Started
 
 ### Prerequisites
